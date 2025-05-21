@@ -1,0 +1,65 @@
+{
+    "name": "mr-maas",
+    "description": "Mr MaaS Backend",
+    "module": "src/main.ts",
+    "main": "src/main.ts",
+    "engines": {
+        "node": "22.x"
+    },
+    "type": "module",
+    "version": "1.0.0",
+    "prisma": {
+        "schema": "prisma/schema.prisma"
+    },
+    "scripts": {
+        "build": "bun run tsc && bun run resolve-tspaths && bun run prisma generate",
+        "start": "bun run pm2 start dist/main.js --name mr-maas",
+        "dev": "bun --watch src/main.ts",
+        "type-check": "bun run tsc --noEmit --watch",
+        "lint": "bun run eslint . --ignore-pattern 'dist'",
+        "lint:fix": "bun run eslint . --fix --ignore-pattern 'dist'",
+        "fmt": "bun run prettier --write .",
+        "fmt:check": "bun run prettier --check ."
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.20.0",
+        "@types/bun": "latest",
+        "@types/cookie-parser": "^1.4.8",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0",
+        "@types/jsonwebtoken": "^9.0.8",
+        "@types/lodash": "^4.17.15",
+        "@types/node-cron": "^3.0.11",
+        "@types/nodemailer": "^6.4.17",
+        "eslint": "^9.20.0",
+        "eslint-config-prettier": "^9.1.0",
+        "globals": "^15.14.0",
+        "prettier": "^3.5.0",
+        "prisma": "6.8.2",
+        "resolve-tspaths": "^0.8.23",
+        "typescript-eslint": "^8.23.0"
+    },
+    "peerDependencies": {
+        "typescript": "^5.7.2"
+    },
+    "dependencies": {
+        "@prisma/client": "6.8.2",
+        "ai": "^4.3.15",
+        "bcryptjs": "^3.0.2",
+        "body-parser": "^1.20.3",
+        "cookie-parser": "^1.4.7",
+        "cors": "^2.8.5",
+        "date-fns": "^4.1.0",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "express-rate-limit": "^7.5.0",
+        "helmet": "^8.1.0",
+        "jsonwebtoken": "^9.0.2",
+        "lodash": "^4.17.21",
+        "node-cron": "^3.0.3",
+        "nodemailer": "^6.10.0",
+        "ollama-ai-provider": "^1.2.0",
+        "pm2": "^6.0.5",
+        "zod": "^3.24.1"
+    }
+}
