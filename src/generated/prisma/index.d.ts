@@ -673,18 +673,6 @@ export namespace Prisma {
             args: Prisma.MemoryChunkFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>[]
           }
-          create: {
-            args: Prisma.MemoryChunkCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>
-          }
-          createMany: {
-            args: Prisma.MemoryChunkCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.MemoryChunkCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>[]
-          }
           delete: {
             args: Prisma.MemoryChunkDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>
@@ -704,10 +692,6 @@ export namespace Prisma {
           updateManyAndReturn: {
             args: Prisma.MemoryChunkUpdateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>[]
-          }
-          upsert: {
-            args: Prisma.MemoryChunkUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>
           }
           aggregate: {
             args: Prisma.MemoryChunkAggregateArgs<ExtArgs>
@@ -1019,18 +1003,21 @@ export namespace Prisma {
 
   export type MemoryChunkMinAggregateOutputType = {
     id: string | null
+    content: string | null
     createdAt: Date | null
     userId: string | null
   }
 
   export type MemoryChunkMaxAggregateOutputType = {
     id: string | null
+    content: string | null
     createdAt: Date | null
     userId: string | null
   }
 
   export type MemoryChunkCountAggregateOutputType = {
     id: number
+    content: number
     createdAt: number
     userId: number
     _all: number
@@ -1039,18 +1026,21 @@ export namespace Prisma {
 
   export type MemoryChunkMinAggregateInputType = {
     id?: true
+    content?: true
     createdAt?: true
     userId?: true
   }
 
   export type MemoryChunkMaxAggregateInputType = {
     id?: true
+    content?: true
     createdAt?: true
     userId?: true
   }
 
   export type MemoryChunkCountAggregateInputType = {
     id?: true
+    content?: true
     createdAt?: true
     userId?: true
     _all?: true
@@ -1130,6 +1120,7 @@ export namespace Prisma {
 
   export type MemoryChunkGroupByOutputType = {
     id: string
+    content: string
     createdAt: Date
     userId: string
     _count: MemoryChunkCountAggregateOutputType | null
@@ -1153,20 +1144,16 @@ export namespace Prisma {
 
   export type MemoryChunkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    content?: boolean
     createdAt?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["memoryChunk"]>
 
-  export type MemoryChunkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["memoryChunk"]>
 
   export type MemoryChunkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    content?: boolean
     createdAt?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -1174,15 +1161,13 @@ export namespace Prisma {
 
   export type MemoryChunkSelectScalar = {
     id?: boolean
+    content?: boolean
     createdAt?: boolean
     userId?: boolean
   }
 
-  export type MemoryChunkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "userId", ExtArgs["result"]["memoryChunk"]>
+  export type MemoryChunkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "createdAt" | "userId", ExtArgs["result"]["memoryChunk"]>
   export type MemoryChunkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type MemoryChunkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type MemoryChunkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1196,6 +1181,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      content: string
       createdAt: Date
       userId: string
     }, ExtArgs["result"]["memoryChunk"]>
@@ -1286,58 +1272,6 @@ export namespace Prisma {
      * 
      */
     findMany<T extends MemoryChunkFindManyArgs>(args?: SelectSubset<T, MemoryChunkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a MemoryChunk.
-     * @param {MemoryChunkCreateArgs} args - Arguments to create a MemoryChunk.
-     * @example
-     * // Create one MemoryChunk
-     * const MemoryChunk = await prisma.memoryChunk.create({
-     *   data: {
-     *     // ... data to create a MemoryChunk
-     *   }
-     * })
-     * 
-     */
-    create<T extends MemoryChunkCreateArgs>(args: SelectSubset<T, MemoryChunkCreateArgs<ExtArgs>>): Prisma__MemoryChunkClient<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many MemoryChunks.
-     * @param {MemoryChunkCreateManyArgs} args - Arguments to create many MemoryChunks.
-     * @example
-     * // Create many MemoryChunks
-     * const memoryChunk = await prisma.memoryChunk.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends MemoryChunkCreateManyArgs>(args?: SelectSubset<T, MemoryChunkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many MemoryChunks and returns the data saved in the database.
-     * @param {MemoryChunkCreateManyAndReturnArgs} args - Arguments to create many MemoryChunks.
-     * @example
-     * // Create many MemoryChunks
-     * const memoryChunk = await prisma.memoryChunk.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many MemoryChunks and only return the `id`
-     * const memoryChunkWithIdOnly = await prisma.memoryChunk.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends MemoryChunkCreateManyAndReturnArgs>(args?: SelectSubset<T, MemoryChunkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Delete a MemoryChunk.
@@ -1432,25 +1366,6 @@ export namespace Prisma {
      * 
      */
     updateManyAndReturn<T extends MemoryChunkUpdateManyAndReturnArgs>(args: SelectSubset<T, MemoryChunkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one MemoryChunk.
-     * @param {MemoryChunkUpsertArgs} args - Arguments to update or create a MemoryChunk.
-     * @example
-     * // Update or create a MemoryChunk
-     * const memoryChunk = await prisma.memoryChunk.upsert({
-     *   create: {
-     *     // ... data to create a MemoryChunk
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the MemoryChunk we want to update
-     *   }
-     * })
-     */
-    upsert<T extends MemoryChunkUpsertArgs>(args: SelectSubset<T, MemoryChunkUpsertArgs<ExtArgs>>): Prisma__MemoryChunkClient<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
@@ -1623,6 +1538,7 @@ export namespace Prisma {
    */
   interface MemoryChunkFieldRefs {
     readonly id: FieldRef<"MemoryChunk", 'String'>
+    readonly content: FieldRef<"MemoryChunk", 'String'>
     readonly createdAt: FieldRef<"MemoryChunk", 'DateTime'>
     readonly userId: FieldRef<"MemoryChunk", 'String'>
   }
@@ -1825,62 +1741,6 @@ export namespace Prisma {
   }
 
   /**
-   * MemoryChunk create
-   */
-  export type MemoryChunkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MemoryChunk
-     */
-    select?: MemoryChunkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MemoryChunk
-     */
-    omit?: MemoryChunkOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MemoryChunkInclude<ExtArgs> | null
-    /**
-     * The data needed to create a MemoryChunk.
-     */
-    data: XOR<MemoryChunkCreateInput, MemoryChunkUncheckedCreateInput>
-  }
-
-  /**
-   * MemoryChunk createMany
-   */
-  export type MemoryChunkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many MemoryChunks.
-     */
-    data: MemoryChunkCreateManyInput | MemoryChunkCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * MemoryChunk createManyAndReturn
-   */
-  export type MemoryChunkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MemoryChunk
-     */
-    select?: MemoryChunkSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the MemoryChunk
-     */
-    omit?: MemoryChunkOmit<ExtArgs> | null
-    /**
-     * The data used to create many MemoryChunks.
-     */
-    data: MemoryChunkCreateManyInput | MemoryChunkCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MemoryChunkIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
    * MemoryChunk update
    */
   export type MemoryChunkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1952,36 +1812,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: MemoryChunkIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * MemoryChunk upsert
-   */
-  export type MemoryChunkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MemoryChunk
-     */
-    select?: MemoryChunkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MemoryChunk
-     */
-    omit?: MemoryChunkOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MemoryChunkInclude<ExtArgs> | null
-    /**
-     * The filter to search for the MemoryChunk to update in case it exists.
-     */
-    where: MemoryChunkWhereUniqueInput
-    /**
-     * In case the MemoryChunk found by the `where` argument doesn't exist, create a new MemoryChunk with this data.
-     */
-    create: XOR<MemoryChunkCreateInput, MemoryChunkUncheckedCreateInput>
-    /**
-     * In case the MemoryChunk was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<MemoryChunkUpdateInput, MemoryChunkUncheckedUpdateInput>
   }
 
   /**
@@ -3242,6 +3072,7 @@ export namespace Prisma {
 
   export const MemoryChunkScalarFieldEnum: {
     id: 'id',
+    content: 'content',
     createdAt: 'createdAt',
     userId: 'userId'
   };
@@ -3369,6 +3200,7 @@ export namespace Prisma {
     OR?: MemoryChunkWhereInput[]
     NOT?: MemoryChunkWhereInput | MemoryChunkWhereInput[]
     id?: StringFilter<"MemoryChunk"> | string
+    content?: StringFilter<"MemoryChunk"> | string
     createdAt?: DateTimeFilter<"MemoryChunk"> | Date | string
     userId?: StringFilter<"MemoryChunk"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -3376,6 +3208,7 @@ export namespace Prisma {
 
   export type MemoryChunkOrderByWithRelationInput = {
     id?: SortOrder
+    content?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -3386,6 +3219,7 @@ export namespace Prisma {
     AND?: MemoryChunkWhereInput | MemoryChunkWhereInput[]
     OR?: MemoryChunkWhereInput[]
     NOT?: MemoryChunkWhereInput | MemoryChunkWhereInput[]
+    content?: StringFilter<"MemoryChunk"> | string
     createdAt?: DateTimeFilter<"MemoryChunk"> | Date | string
     userId?: StringFilter<"MemoryChunk"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -3393,6 +3227,7 @@ export namespace Prisma {
 
   export type MemoryChunkOrderByWithAggregationInput = {
     id?: SortOrder
+    content?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
     _count?: MemoryChunkCountOrderByAggregateInput
@@ -3405,6 +3240,7 @@ export namespace Prisma {
     OR?: MemoryChunkScalarWhereWithAggregatesInput[]
     NOT?: MemoryChunkScalarWhereWithAggregatesInput | MemoryChunkScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"MemoryChunk"> | string
+    content?: StringWithAggregatesFilter<"MemoryChunk"> | string
     createdAt?: DateTimeWithAggregatesFilter<"MemoryChunk"> | Date | string
     userId?: StringWithAggregatesFilter<"MemoryChunk"> | string
   }
@@ -3509,43 +3345,29 @@ export namespace Prisma {
     bio?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
-  export type MemoryChunkCreateInput = {
-    id?: string
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutMemoryChunkInput
-  }
-
-  export type MemoryChunkUncheckedCreateInput = {
-    id?: string
-    createdAt?: Date | string
-    userId: string
-  }
-
   export type MemoryChunkUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutMemoryChunkNestedInput
   }
 
   export type MemoryChunkUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type MemoryChunkCreateManyInput = {
-    id?: string
-    createdAt?: Date | string
-    userId: string
-  }
-
   export type MemoryChunkUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MemoryChunkUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
   }
@@ -3706,18 +3528,21 @@ export namespace Prisma {
 
   export type MemoryChunkCountOrderByAggregateInput = {
     id?: SortOrder
+    content?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
   }
 
   export type MemoryChunkMaxOrderByAggregateInput = {
     id?: SortOrder
+    content?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
   }
 
   export type MemoryChunkMinOrderByAggregateInput = {
     id?: SortOrder
+    content?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
   }
@@ -3883,12 +3708,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type UserCreateNestedOneWithoutMemoryChunkInput = {
-    create?: XOR<UserCreateWithoutMemoryChunkInput, UserUncheckedCreateWithoutMemoryChunkInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMemoryChunkInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -3906,16 +3725,10 @@ export namespace Prisma {
   }
 
   export type MemoryChunkCreateNestedManyWithoutUserInput = {
-    create?: XOR<MemoryChunkCreateWithoutUserInput, MemoryChunkUncheckedCreateWithoutUserInput> | MemoryChunkCreateWithoutUserInput[] | MemoryChunkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryChunkCreateOrConnectWithoutUserInput | MemoryChunkCreateOrConnectWithoutUserInput[]
-    createMany?: MemoryChunkCreateManyUserInputEnvelope
     connect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
   }
 
   export type MemoryChunkUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<MemoryChunkCreateWithoutUserInput, MemoryChunkUncheckedCreateWithoutUserInput> | MemoryChunkCreateWithoutUserInput[] | MemoryChunkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryChunkCreateOrConnectWithoutUserInput | MemoryChunkCreateOrConnectWithoutUserInput[]
-    createMany?: MemoryChunkCreateManyUserInputEnvelope
     connect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
   }
 
@@ -3932,10 +3745,6 @@ export namespace Prisma {
   }
 
   export type MemoryChunkUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MemoryChunkCreateWithoutUserInput, MemoryChunkUncheckedCreateWithoutUserInput> | MemoryChunkCreateWithoutUserInput[] | MemoryChunkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryChunkCreateOrConnectWithoutUserInput | MemoryChunkCreateOrConnectWithoutUserInput[]
-    upsert?: MemoryChunkUpsertWithWhereUniqueWithoutUserInput | MemoryChunkUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MemoryChunkCreateManyUserInputEnvelope
     set?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
     disconnect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
     delete?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
@@ -3946,10 +3755,6 @@ export namespace Prisma {
   }
 
   export type MemoryChunkUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MemoryChunkCreateWithoutUserInput, MemoryChunkUncheckedCreateWithoutUserInput> | MemoryChunkCreateWithoutUserInput[] | MemoryChunkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryChunkCreateOrConnectWithoutUserInput | MemoryChunkCreateOrConnectWithoutUserInput[]
-    upsert?: MemoryChunkUpsertWithWhereUniqueWithoutUserInput | MemoryChunkUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MemoryChunkCreateManyUserInputEnvelope
     set?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
     disconnect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
     delete?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
@@ -4182,32 +3987,6 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type MemoryChunkCreateWithoutUserInput = {
-    id?: string
-    createdAt?: Date | string
-  }
-
-  export type MemoryChunkUncheckedCreateWithoutUserInput = {
-    id?: string
-    createdAt?: Date | string
-  }
-
-  export type MemoryChunkCreateOrConnectWithoutUserInput = {
-    where: MemoryChunkWhereUniqueInput
-    create: XOR<MemoryChunkCreateWithoutUserInput, MemoryChunkUncheckedCreateWithoutUserInput>
-  }
-
-  export type MemoryChunkCreateManyUserInputEnvelope = {
-    data: MemoryChunkCreateManyUserInput | MemoryChunkCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type MemoryChunkUpsertWithWhereUniqueWithoutUserInput = {
-    where: MemoryChunkWhereUniqueInput
-    update: XOR<MemoryChunkUpdateWithoutUserInput, MemoryChunkUncheckedUpdateWithoutUserInput>
-    create: XOR<MemoryChunkCreateWithoutUserInput, MemoryChunkUncheckedCreateWithoutUserInput>
-  }
-
   export type MemoryChunkUpdateWithWhereUniqueWithoutUserInput = {
     where: MemoryChunkWhereUniqueInput
     data: XOR<MemoryChunkUpdateWithoutUserInput, MemoryChunkUncheckedUpdateWithoutUserInput>
@@ -4223,27 +4002,26 @@ export namespace Prisma {
     OR?: MemoryChunkScalarWhereInput[]
     NOT?: MemoryChunkScalarWhereInput | MemoryChunkScalarWhereInput[]
     id?: StringFilter<"MemoryChunk"> | string
+    content?: StringFilter<"MemoryChunk"> | string
     createdAt?: DateTimeFilter<"MemoryChunk"> | Date | string
     userId?: StringFilter<"MemoryChunk"> | string
   }
 
-  export type MemoryChunkCreateManyUserInput = {
-    id?: string
-    createdAt?: Date | string
-  }
-
   export type MemoryChunkUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MemoryChunkUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MemoryChunkUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

@@ -122,6 +122,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.MemoryChunkScalarFieldEnum = {
   id: 'id',
+  content: 'content',
   createdAt: 'createdAt',
   userId: 'userId'
 };
