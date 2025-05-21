@@ -14,10 +14,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model MemoryChunk
+ * Model MemoryEntry
  * 
  */
-export type MemoryChunk = $Result.DefaultSelection<Prisma.$MemoryChunkPayload>
+export type MemoryEntry = $Result.DefaultSelection<Prisma.$MemoryEntryPayload>
 /**
  * Model User
  * 
@@ -48,8 +48,8 @@ export const Role: typeof $Enums.Role
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more MemoryChunks
- * const memoryChunks = await prisma.memoryChunk.findMany()
+ * // Fetch zero or more MemoryEntries
+ * const memoryEntries = await prisma.memoryEntry.findMany()
  * ```
  *
  *
@@ -69,8 +69,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more MemoryChunks
-   * const memoryChunks = await prisma.memoryChunk.findMany()
+   * // Fetch zero or more MemoryEntries
+   * const memoryEntries = await prisma.memoryEntry.findMany()
    * ```
    *
    *
@@ -167,14 +167,14 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.memoryChunk`: Exposes CRUD operations for the **MemoryChunk** model.
+   * `prisma.memoryEntry`: Exposes CRUD operations for the **MemoryEntry** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more MemoryChunks
-    * const memoryChunks = await prisma.memoryChunk.findMany()
+    * // Fetch zero or more MemoryEntries
+    * const memoryEntries = await prisma.memoryEntry.findMany()
     * ```
     */
-  get memoryChunk(): Prisma.MemoryChunkDelegate<ExtArgs, ClientOptions>;
+  get memoryEntry(): Prisma.MemoryEntryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -625,7 +625,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    MemoryChunk: 'MemoryChunk',
+    MemoryEntry: 'MemoryEntry',
     User: 'User'
   };
 
@@ -645,65 +645,65 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "memoryChunk" | "user"
+      modelProps: "memoryEntry" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      MemoryChunk: {
-        payload: Prisma.$MemoryChunkPayload<ExtArgs>
-        fields: Prisma.MemoryChunkFieldRefs
+      MemoryEntry: {
+        payload: Prisma.$MemoryEntryPayload<ExtArgs>
+        fields: Prisma.MemoryEntryFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.MemoryChunkFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload> | null
+            args: Prisma.MemoryEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MemoryEntryPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.MemoryChunkFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>
+            args: Prisma.MemoryEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MemoryEntryPayload>
           }
           findFirst: {
-            args: Prisma.MemoryChunkFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload> | null
+            args: Prisma.MemoryEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MemoryEntryPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.MemoryChunkFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>
+            args: Prisma.MemoryEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MemoryEntryPayload>
           }
           findMany: {
-            args: Prisma.MemoryChunkFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>[]
+            args: Prisma.MemoryEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MemoryEntryPayload>[]
           }
           delete: {
-            args: Prisma.MemoryChunkDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>
+            args: Prisma.MemoryEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MemoryEntryPayload>
           }
           update: {
-            args: Prisma.MemoryChunkUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>
+            args: Prisma.MemoryEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MemoryEntryPayload>
           }
           deleteMany: {
-            args: Prisma.MemoryChunkDeleteManyArgs<ExtArgs>
+            args: Prisma.MemoryEntryDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.MemoryChunkUpdateManyArgs<ExtArgs>
+            args: Prisma.MemoryEntryUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.MemoryChunkUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MemoryChunkPayload>[]
+            args: Prisma.MemoryEntryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MemoryEntryPayload>[]
           }
           aggregate: {
-            args: Prisma.MemoryChunkAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateMemoryChunk>
+            args: Prisma.MemoryEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMemoryEntry>
           }
           groupBy: {
-            args: Prisma.MemoryChunkGroupByArgs<ExtArgs>
-            result: $Utils.Optional<MemoryChunkGroupByOutputType>[]
+            args: Prisma.MemoryEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MemoryEntryGroupByOutputType>[]
           }
           count: {
-            args: Prisma.MemoryChunkCountArgs<ExtArgs>
-            result: $Utils.Optional<MemoryChunkCountAggregateOutputType> | number
+            args: Prisma.MemoryEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<MemoryEntryCountAggregateOutputType> | number
           }
         }
       }
@@ -865,7 +865,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    memoryChunk?: MemoryChunkOmit
+    memoryEntry?: MemoryEntryOmit
     user?: UserOmit
   }
 
@@ -961,11 +961,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    MemoryChunk: number
+    MemoryEntry: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    MemoryChunk?: boolean | UserCountOutputTypeCountMemoryChunkArgs
+    MemoryEntry?: boolean | UserCountOutputTypeCountMemoryEntryArgs
   }
 
   // Custom InputTypes
@@ -982,8 +982,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountMemoryChunkArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MemoryChunkWhereInput
+  export type UserCountOutputTypeCountMemoryEntryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MemoryEntryWhereInput
   }
 
 
@@ -992,30 +992,30 @@ export namespace Prisma {
    */
 
   /**
-   * Model MemoryChunk
+   * Model MemoryEntry
    */
 
-  export type AggregateMemoryChunk = {
-    _count: MemoryChunkCountAggregateOutputType | null
-    _min: MemoryChunkMinAggregateOutputType | null
-    _max: MemoryChunkMaxAggregateOutputType | null
+  export type AggregateMemoryEntry = {
+    _count: MemoryEntryCountAggregateOutputType | null
+    _min: MemoryEntryMinAggregateOutputType | null
+    _max: MemoryEntryMaxAggregateOutputType | null
   }
 
-  export type MemoryChunkMinAggregateOutputType = {
+  export type MemoryEntryMinAggregateOutputType = {
     id: string | null
     content: string | null
     createdAt: Date | null
     userId: string | null
   }
 
-  export type MemoryChunkMaxAggregateOutputType = {
+  export type MemoryEntryMaxAggregateOutputType = {
     id: string | null
     content: string | null
     createdAt: Date | null
     userId: string | null
   }
 
-  export type MemoryChunkCountAggregateOutputType = {
+  export type MemoryEntryCountAggregateOutputType = {
     id: number
     content: number
     createdAt: number
@@ -1024,21 +1024,21 @@ export namespace Prisma {
   }
 
 
-  export type MemoryChunkMinAggregateInputType = {
+  export type MemoryEntryMinAggregateInputType = {
     id?: true
     content?: true
     createdAt?: true
     userId?: true
   }
 
-  export type MemoryChunkMaxAggregateInputType = {
+  export type MemoryEntryMaxAggregateInputType = {
     id?: true
     content?: true
     createdAt?: true
     userId?: true
   }
 
-  export type MemoryChunkCountAggregateInputType = {
+  export type MemoryEntryCountAggregateInputType = {
     id?: true
     content?: true
     createdAt?: true
@@ -1046,136 +1046,136 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type MemoryChunkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which MemoryChunk to aggregate.
+     * Filter which MemoryEntry to aggregate.
      */
-    where?: MemoryChunkWhereInput
+    where?: MemoryEntryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of MemoryChunks to fetch.
+     * Determine the order of MemoryEntries to fetch.
      */
-    orderBy?: MemoryChunkOrderByWithRelationInput | MemoryChunkOrderByWithRelationInput[]
+    orderBy?: MemoryEntryOrderByWithRelationInput | MemoryEntryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: MemoryChunkWhereUniqueInput
+    cursor?: MemoryEntryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` MemoryChunks from the position of the cursor.
+     * Take `±n` MemoryEntries from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` MemoryChunks.
+     * Skip the first `n` MemoryEntries.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned MemoryChunks
+     * Count returned MemoryEntries
     **/
-    _count?: true | MemoryChunkCountAggregateInputType
+    _count?: true | MemoryEntryCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: MemoryChunkMinAggregateInputType
+    _min?: MemoryEntryMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: MemoryChunkMaxAggregateInputType
+    _max?: MemoryEntryMaxAggregateInputType
   }
 
-  export type GetMemoryChunkAggregateType<T extends MemoryChunkAggregateArgs> = {
-        [P in keyof T & keyof AggregateMemoryChunk]: P extends '_count' | 'count'
+  export type GetMemoryEntryAggregateType<T extends MemoryEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateMemoryEntry]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateMemoryChunk[P]>
-      : GetScalarType<T[P], AggregateMemoryChunk[P]>
+        : GetScalarType<T[P], AggregateMemoryEntry[P]>
+      : GetScalarType<T[P], AggregateMemoryEntry[P]>
   }
 
 
 
 
-  export type MemoryChunkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MemoryChunkWhereInput
-    orderBy?: MemoryChunkOrderByWithAggregationInput | MemoryChunkOrderByWithAggregationInput[]
-    by: MemoryChunkScalarFieldEnum[] | MemoryChunkScalarFieldEnum
-    having?: MemoryChunkScalarWhereWithAggregatesInput
+  export type MemoryEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MemoryEntryWhereInput
+    orderBy?: MemoryEntryOrderByWithAggregationInput | MemoryEntryOrderByWithAggregationInput[]
+    by: MemoryEntryScalarFieldEnum[] | MemoryEntryScalarFieldEnum
+    having?: MemoryEntryScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: MemoryChunkCountAggregateInputType | true
-    _min?: MemoryChunkMinAggregateInputType
-    _max?: MemoryChunkMaxAggregateInputType
+    _count?: MemoryEntryCountAggregateInputType | true
+    _min?: MemoryEntryMinAggregateInputType
+    _max?: MemoryEntryMaxAggregateInputType
   }
 
-  export type MemoryChunkGroupByOutputType = {
+  export type MemoryEntryGroupByOutputType = {
     id: string
     content: string
     createdAt: Date
     userId: string
-    _count: MemoryChunkCountAggregateOutputType | null
-    _min: MemoryChunkMinAggregateOutputType | null
-    _max: MemoryChunkMaxAggregateOutputType | null
+    _count: MemoryEntryCountAggregateOutputType | null
+    _min: MemoryEntryMinAggregateOutputType | null
+    _max: MemoryEntryMaxAggregateOutputType | null
   }
 
-  type GetMemoryChunkGroupByPayload<T extends MemoryChunkGroupByArgs> = Prisma.PrismaPromise<
+  type GetMemoryEntryGroupByPayload<T extends MemoryEntryGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<MemoryChunkGroupByOutputType, T['by']> &
+      PickEnumerable<MemoryEntryGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof MemoryChunkGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof MemoryEntryGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], MemoryChunkGroupByOutputType[P]>
-            : GetScalarType<T[P], MemoryChunkGroupByOutputType[P]>
+              : GetScalarType<T[P], MemoryEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], MemoryEntryGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type MemoryChunkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type MemoryEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     content?: boolean
     createdAt?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["memoryChunk"]>
+  }, ExtArgs["result"]["memoryEntry"]>
 
 
-  export type MemoryChunkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type MemoryEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     content?: boolean
     createdAt?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["memoryChunk"]>
+  }, ExtArgs["result"]["memoryEntry"]>
 
-  export type MemoryChunkSelectScalar = {
+  export type MemoryEntrySelectScalar = {
     id?: boolean
     content?: boolean
     createdAt?: boolean
     userId?: boolean
   }
 
-  export type MemoryChunkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "createdAt" | "userId", ExtArgs["result"]["memoryChunk"]>
-  export type MemoryChunkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "createdAt" | "userId", ExtArgs["result"]["memoryEntry"]>
+  export type MemoryEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type MemoryChunkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $MemoryChunkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "MemoryChunk"
+  export type $MemoryEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MemoryEntry"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
     }
@@ -1184,115 +1184,115 @@ export namespace Prisma {
       content: string
       createdAt: Date
       userId: string
-    }, ExtArgs["result"]["memoryChunk"]>
+    }, ExtArgs["result"]["memoryEntry"]>
     composites: {}
   }
 
-  type MemoryChunkGetPayload<S extends boolean | null | undefined | MemoryChunkDefaultArgs> = $Result.GetResult<Prisma.$MemoryChunkPayload, S>
+  type MemoryEntryGetPayload<S extends boolean | null | undefined | MemoryEntryDefaultArgs> = $Result.GetResult<Prisma.$MemoryEntryPayload, S>
 
-  type MemoryChunkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<MemoryChunkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: MemoryChunkCountAggregateInputType | true
+  type MemoryEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MemoryEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MemoryEntryCountAggregateInputType | true
     }
 
-  export interface MemoryChunkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MemoryChunk'], meta: { name: 'MemoryChunk' } }
+  export interface MemoryEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MemoryEntry'], meta: { name: 'MemoryEntry' } }
     /**
-     * Find zero or one MemoryChunk that matches the filter.
-     * @param {MemoryChunkFindUniqueArgs} args - Arguments to find a MemoryChunk
+     * Find zero or one MemoryEntry that matches the filter.
+     * @param {MemoryEntryFindUniqueArgs} args - Arguments to find a MemoryEntry
      * @example
-     * // Get one MemoryChunk
-     * const memoryChunk = await prisma.memoryChunk.findUnique({
+     * // Get one MemoryEntry
+     * const memoryEntry = await prisma.memoryEntry.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends MemoryChunkFindUniqueArgs>(args: SelectSubset<T, MemoryChunkFindUniqueArgs<ExtArgs>>): Prisma__MemoryChunkClient<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends MemoryEntryFindUniqueArgs>(args: SelectSubset<T, MemoryEntryFindUniqueArgs<ExtArgs>>): Prisma__MemoryEntryClient<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one MemoryChunk that matches the filter or throw an error with `error.code='P2025'`
+     * Find one MemoryEntry that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {MemoryChunkFindUniqueOrThrowArgs} args - Arguments to find a MemoryChunk
+     * @param {MemoryEntryFindUniqueOrThrowArgs} args - Arguments to find a MemoryEntry
      * @example
-     * // Get one MemoryChunk
-     * const memoryChunk = await prisma.memoryChunk.findUniqueOrThrow({
+     * // Get one MemoryEntry
+     * const memoryEntry = await prisma.memoryEntry.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends MemoryChunkFindUniqueOrThrowArgs>(args: SelectSubset<T, MemoryChunkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MemoryChunkClient<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends MemoryEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, MemoryEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MemoryEntryClient<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first MemoryChunk that matches the filter.
+     * Find the first MemoryEntry that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MemoryChunkFindFirstArgs} args - Arguments to find a MemoryChunk
+     * @param {MemoryEntryFindFirstArgs} args - Arguments to find a MemoryEntry
      * @example
-     * // Get one MemoryChunk
-     * const memoryChunk = await prisma.memoryChunk.findFirst({
+     * // Get one MemoryEntry
+     * const memoryEntry = await prisma.memoryEntry.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends MemoryChunkFindFirstArgs>(args?: SelectSubset<T, MemoryChunkFindFirstArgs<ExtArgs>>): Prisma__MemoryChunkClient<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends MemoryEntryFindFirstArgs>(args?: SelectSubset<T, MemoryEntryFindFirstArgs<ExtArgs>>): Prisma__MemoryEntryClient<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first MemoryChunk that matches the filter or
+     * Find the first MemoryEntry that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MemoryChunkFindFirstOrThrowArgs} args - Arguments to find a MemoryChunk
+     * @param {MemoryEntryFindFirstOrThrowArgs} args - Arguments to find a MemoryEntry
      * @example
-     * // Get one MemoryChunk
-     * const memoryChunk = await prisma.memoryChunk.findFirstOrThrow({
+     * // Get one MemoryEntry
+     * const memoryEntry = await prisma.memoryEntry.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends MemoryChunkFindFirstOrThrowArgs>(args?: SelectSubset<T, MemoryChunkFindFirstOrThrowArgs<ExtArgs>>): Prisma__MemoryChunkClient<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends MemoryEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, MemoryEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__MemoryEntryClient<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more MemoryChunks that matches the filter.
+     * Find zero or more MemoryEntries that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MemoryChunkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {MemoryEntryFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all MemoryChunks
-     * const memoryChunks = await prisma.memoryChunk.findMany()
+     * // Get all MemoryEntries
+     * const memoryEntries = await prisma.memoryEntry.findMany()
      * 
-     * // Get first 10 MemoryChunks
-     * const memoryChunks = await prisma.memoryChunk.findMany({ take: 10 })
+     * // Get first 10 MemoryEntries
+     * const memoryEntries = await prisma.memoryEntry.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const memoryChunkWithIdOnly = await prisma.memoryChunk.findMany({ select: { id: true } })
+     * const memoryEntryWithIdOnly = await prisma.memoryEntry.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends MemoryChunkFindManyArgs>(args?: SelectSubset<T, MemoryChunkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends MemoryEntryFindManyArgs>(args?: SelectSubset<T, MemoryEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Delete a MemoryChunk.
-     * @param {MemoryChunkDeleteArgs} args - Arguments to delete one MemoryChunk.
+     * Delete a MemoryEntry.
+     * @param {MemoryEntryDeleteArgs} args - Arguments to delete one MemoryEntry.
      * @example
-     * // Delete one MemoryChunk
-     * const MemoryChunk = await prisma.memoryChunk.delete({
+     * // Delete one MemoryEntry
+     * const MemoryEntry = await prisma.memoryEntry.delete({
      *   where: {
-     *     // ... filter to delete one MemoryChunk
+     *     // ... filter to delete one MemoryEntry
      *   }
      * })
      * 
      */
-    delete<T extends MemoryChunkDeleteArgs>(args: SelectSubset<T, MemoryChunkDeleteArgs<ExtArgs>>): Prisma__MemoryChunkClient<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends MemoryEntryDeleteArgs>(args: SelectSubset<T, MemoryEntryDeleteArgs<ExtArgs>>): Prisma__MemoryEntryClient<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one MemoryChunk.
-     * @param {MemoryChunkUpdateArgs} args - Arguments to update one MemoryChunk.
+     * Update one MemoryEntry.
+     * @param {MemoryEntryUpdateArgs} args - Arguments to update one MemoryEntry.
      * @example
-     * // Update one MemoryChunk
-     * const memoryChunk = await prisma.memoryChunk.update({
+     * // Update one MemoryEntry
+     * const memoryEntry = await prisma.memoryEntry.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1302,30 +1302,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends MemoryChunkUpdateArgs>(args: SelectSubset<T, MemoryChunkUpdateArgs<ExtArgs>>): Prisma__MemoryChunkClient<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends MemoryEntryUpdateArgs>(args: SelectSubset<T, MemoryEntryUpdateArgs<ExtArgs>>): Prisma__MemoryEntryClient<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more MemoryChunks.
-     * @param {MemoryChunkDeleteManyArgs} args - Arguments to filter MemoryChunks to delete.
+     * Delete zero or more MemoryEntries.
+     * @param {MemoryEntryDeleteManyArgs} args - Arguments to filter MemoryEntries to delete.
      * @example
-     * // Delete a few MemoryChunks
-     * const { count } = await prisma.memoryChunk.deleteMany({
+     * // Delete a few MemoryEntries
+     * const { count } = await prisma.memoryEntry.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends MemoryChunkDeleteManyArgs>(args?: SelectSubset<T, MemoryChunkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends MemoryEntryDeleteManyArgs>(args?: SelectSubset<T, MemoryEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more MemoryChunks.
+     * Update zero or more MemoryEntries.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MemoryChunkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {MemoryEntryUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many MemoryChunks
-     * const memoryChunk = await prisma.memoryChunk.updateMany({
+     * // Update many MemoryEntries
+     * const memoryEntry = await prisma.memoryEntry.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1335,14 +1335,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends MemoryChunkUpdateManyArgs>(args: SelectSubset<T, MemoryChunkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends MemoryEntryUpdateManyArgs>(args: SelectSubset<T, MemoryEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more MemoryChunks and returns the data updated in the database.
-     * @param {MemoryChunkUpdateManyAndReturnArgs} args - Arguments to update many MemoryChunks.
+     * Update zero or more MemoryEntries and returns the data updated in the database.
+     * @param {MemoryEntryUpdateManyAndReturnArgs} args - Arguments to update many MemoryEntries.
      * @example
-     * // Update many MemoryChunks
-     * const memoryChunk = await prisma.memoryChunk.updateManyAndReturn({
+     * // Update many MemoryEntries
+     * const memoryEntry = await prisma.memoryEntry.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1351,8 +1351,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more MemoryChunks and only return the `id`
-     * const memoryChunkWithIdOnly = await prisma.memoryChunk.updateManyAndReturn({
+     * // Update zero or more MemoryEntries and only return the `id`
+     * const memoryEntryWithIdOnly = await prisma.memoryEntry.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -1365,37 +1365,37 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends MemoryChunkUpdateManyAndReturnArgs>(args: SelectSubset<T, MemoryChunkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends MemoryEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, MemoryEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
 
     /**
-     * Count the number of MemoryChunks.
+     * Count the number of MemoryEntries.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MemoryChunkCountArgs} args - Arguments to filter MemoryChunks to count.
+     * @param {MemoryEntryCountArgs} args - Arguments to filter MemoryEntries to count.
      * @example
-     * // Count the number of MemoryChunks
-     * const count = await prisma.memoryChunk.count({
+     * // Count the number of MemoryEntries
+     * const count = await prisma.memoryEntry.count({
      *   where: {
-     *     // ... the filter for the MemoryChunks we want to count
+     *     // ... the filter for the MemoryEntries we want to count
      *   }
      * })
     **/
-    count<T extends MemoryChunkCountArgs>(
-      args?: Subset<T, MemoryChunkCountArgs>,
+    count<T extends MemoryEntryCountArgs>(
+      args?: Subset<T, MemoryEntryCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], MemoryChunkCountAggregateOutputType>
+          : GetScalarType<T['select'], MemoryEntryCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a MemoryChunk.
+     * Allows you to perform aggregations operations on a MemoryEntry.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MemoryChunkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {MemoryEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1415,13 +1415,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends MemoryChunkAggregateArgs>(args: Subset<T, MemoryChunkAggregateArgs>): Prisma.PrismaPromise<GetMemoryChunkAggregateType<T>>
+    aggregate<T extends MemoryEntryAggregateArgs>(args: Subset<T, MemoryEntryAggregateArgs>): Prisma.PrismaPromise<GetMemoryEntryAggregateType<T>>
 
     /**
-     * Group by MemoryChunk.
+     * Group by MemoryEntry.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MemoryChunkGroupByArgs} args - Group by arguments.
+     * @param {MemoryEntryGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1436,14 +1436,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends MemoryChunkGroupByArgs,
+      T extends MemoryEntryGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: MemoryChunkGroupByArgs['orderBy'] }
-        : { orderBy?: MemoryChunkGroupByArgs['orderBy'] },
+        ? { orderBy: MemoryEntryGroupByArgs['orderBy'] }
+        : { orderBy?: MemoryEntryGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1492,20 +1492,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, MemoryChunkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMemoryChunkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, MemoryEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMemoryEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the MemoryChunk model
+   * Fields of the MemoryEntry model
    */
-  readonly fields: MemoryChunkFieldRefs;
+  readonly fields: MemoryEntryFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for MemoryChunk.
+   * The delegate class that acts as a "Promise-like" for MemoryEntry.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__MemoryChunkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__MemoryEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -1534,338 +1534,338 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the MemoryChunk model
+   * Fields of the MemoryEntry model
    */
-  interface MemoryChunkFieldRefs {
-    readonly id: FieldRef<"MemoryChunk", 'String'>
-    readonly content: FieldRef<"MemoryChunk", 'String'>
-    readonly createdAt: FieldRef<"MemoryChunk", 'DateTime'>
-    readonly userId: FieldRef<"MemoryChunk", 'String'>
+  interface MemoryEntryFieldRefs {
+    readonly id: FieldRef<"MemoryEntry", 'String'>
+    readonly content: FieldRef<"MemoryEntry", 'String'>
+    readonly createdAt: FieldRef<"MemoryEntry", 'DateTime'>
+    readonly userId: FieldRef<"MemoryEntry", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * MemoryChunk findUnique
+   * MemoryEntry findUnique
    */
-  export type MemoryChunkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
+    include?: MemoryEntryInclude<ExtArgs> | null
     /**
-     * Filter, which MemoryChunk to fetch.
+     * Filter, which MemoryEntry to fetch.
      */
-    where: MemoryChunkWhereUniqueInput
+    where: MemoryEntryWhereUniqueInput
   }
 
   /**
-   * MemoryChunk findUniqueOrThrow
+   * MemoryEntry findUniqueOrThrow
    */
-  export type MemoryChunkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
+    include?: MemoryEntryInclude<ExtArgs> | null
     /**
-     * Filter, which MemoryChunk to fetch.
+     * Filter, which MemoryEntry to fetch.
      */
-    where: MemoryChunkWhereUniqueInput
+    where: MemoryEntryWhereUniqueInput
   }
 
   /**
-   * MemoryChunk findFirst
+   * MemoryEntry findFirst
    */
-  export type MemoryChunkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
+    include?: MemoryEntryInclude<ExtArgs> | null
     /**
-     * Filter, which MemoryChunk to fetch.
+     * Filter, which MemoryEntry to fetch.
      */
-    where?: MemoryChunkWhereInput
+    where?: MemoryEntryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of MemoryChunks to fetch.
+     * Determine the order of MemoryEntries to fetch.
      */
-    orderBy?: MemoryChunkOrderByWithRelationInput | MemoryChunkOrderByWithRelationInput[]
+    orderBy?: MemoryEntryOrderByWithRelationInput | MemoryEntryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for MemoryChunks.
+     * Sets the position for searching for MemoryEntries.
      */
-    cursor?: MemoryChunkWhereUniqueInput
+    cursor?: MemoryEntryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` MemoryChunks from the position of the cursor.
+     * Take `±n` MemoryEntries from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` MemoryChunks.
+     * Skip the first `n` MemoryEntries.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of MemoryChunks.
+     * Filter by unique combinations of MemoryEntries.
      */
-    distinct?: MemoryChunkScalarFieldEnum | MemoryChunkScalarFieldEnum[]
+    distinct?: MemoryEntryScalarFieldEnum | MemoryEntryScalarFieldEnum[]
   }
 
   /**
-   * MemoryChunk findFirstOrThrow
+   * MemoryEntry findFirstOrThrow
    */
-  export type MemoryChunkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
+    include?: MemoryEntryInclude<ExtArgs> | null
     /**
-     * Filter, which MemoryChunk to fetch.
+     * Filter, which MemoryEntry to fetch.
      */
-    where?: MemoryChunkWhereInput
+    where?: MemoryEntryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of MemoryChunks to fetch.
+     * Determine the order of MemoryEntries to fetch.
      */
-    orderBy?: MemoryChunkOrderByWithRelationInput | MemoryChunkOrderByWithRelationInput[]
+    orderBy?: MemoryEntryOrderByWithRelationInput | MemoryEntryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for MemoryChunks.
+     * Sets the position for searching for MemoryEntries.
      */
-    cursor?: MemoryChunkWhereUniqueInput
+    cursor?: MemoryEntryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` MemoryChunks from the position of the cursor.
+     * Take `±n` MemoryEntries from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` MemoryChunks.
+     * Skip the first `n` MemoryEntries.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of MemoryChunks.
+     * Filter by unique combinations of MemoryEntries.
      */
-    distinct?: MemoryChunkScalarFieldEnum | MemoryChunkScalarFieldEnum[]
+    distinct?: MemoryEntryScalarFieldEnum | MemoryEntryScalarFieldEnum[]
   }
 
   /**
-   * MemoryChunk findMany
+   * MemoryEntry findMany
    */
-  export type MemoryChunkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
+    include?: MemoryEntryInclude<ExtArgs> | null
     /**
-     * Filter, which MemoryChunks to fetch.
+     * Filter, which MemoryEntries to fetch.
      */
-    where?: MemoryChunkWhereInput
+    where?: MemoryEntryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of MemoryChunks to fetch.
+     * Determine the order of MemoryEntries to fetch.
      */
-    orderBy?: MemoryChunkOrderByWithRelationInput | MemoryChunkOrderByWithRelationInput[]
+    orderBy?: MemoryEntryOrderByWithRelationInput | MemoryEntryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing MemoryChunks.
+     * Sets the position for listing MemoryEntries.
      */
-    cursor?: MemoryChunkWhereUniqueInput
+    cursor?: MemoryEntryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` MemoryChunks from the position of the cursor.
+     * Take `±n` MemoryEntries from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` MemoryChunks.
+     * Skip the first `n` MemoryEntries.
      */
     skip?: number
-    distinct?: MemoryChunkScalarFieldEnum | MemoryChunkScalarFieldEnum[]
+    distinct?: MemoryEntryScalarFieldEnum | MemoryEntryScalarFieldEnum[]
   }
 
   /**
-   * MemoryChunk update
+   * MemoryEntry update
    */
-  export type MemoryChunkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
+    include?: MemoryEntryInclude<ExtArgs> | null
     /**
-     * The data needed to update a MemoryChunk.
+     * The data needed to update a MemoryEntry.
      */
-    data: XOR<MemoryChunkUpdateInput, MemoryChunkUncheckedUpdateInput>
+    data: XOR<MemoryEntryUpdateInput, MemoryEntryUncheckedUpdateInput>
     /**
-     * Choose, which MemoryChunk to update.
+     * Choose, which MemoryEntry to update.
      */
-    where: MemoryChunkWhereUniqueInput
+    where: MemoryEntryWhereUniqueInput
   }
 
   /**
-   * MemoryChunk updateMany
+   * MemoryEntry updateMany
    */
-  export type MemoryChunkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update MemoryChunks.
+     * The data used to update MemoryEntries.
      */
-    data: XOR<MemoryChunkUpdateManyMutationInput, MemoryChunkUncheckedUpdateManyInput>
+    data: XOR<MemoryEntryUpdateManyMutationInput, MemoryEntryUncheckedUpdateManyInput>
     /**
-     * Filter which MemoryChunks to update
+     * Filter which MemoryEntries to update
      */
-    where?: MemoryChunkWhereInput
+    where?: MemoryEntryWhereInput
     /**
-     * Limit how many MemoryChunks to update.
+     * Limit how many MemoryEntries to update.
      */
     limit?: number
   }
 
   /**
-   * MemoryChunk updateManyAndReturn
+   * MemoryEntry updateManyAndReturn
    */
-  export type MemoryChunkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: MemoryEntrySelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
-     * The data used to update MemoryChunks.
+     * The data used to update MemoryEntries.
      */
-    data: XOR<MemoryChunkUpdateManyMutationInput, MemoryChunkUncheckedUpdateManyInput>
+    data: XOR<MemoryEntryUpdateManyMutationInput, MemoryEntryUncheckedUpdateManyInput>
     /**
-     * Filter which MemoryChunks to update
+     * Filter which MemoryEntries to update
      */
-    where?: MemoryChunkWhereInput
+    where?: MemoryEntryWhereInput
     /**
-     * Limit how many MemoryChunks to update.
+     * Limit how many MemoryEntries to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: MemoryEntryIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * MemoryChunk delete
+   * MemoryEntry delete
    */
-  export type MemoryChunkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
+    include?: MemoryEntryInclude<ExtArgs> | null
     /**
-     * Filter which MemoryChunk to delete.
+     * Filter which MemoryEntry to delete.
      */
-    where: MemoryChunkWhereUniqueInput
+    where: MemoryEntryWhereUniqueInput
   }
 
   /**
-   * MemoryChunk deleteMany
+   * MemoryEntry deleteMany
    */
-  export type MemoryChunkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which MemoryChunks to delete
+     * Filter which MemoryEntries to delete
      */
-    where?: MemoryChunkWhereInput
+    where?: MemoryEntryWhereInput
     /**
-     * Limit how many MemoryChunks to delete.
+     * Limit how many MemoryEntries to delete.
      */
     limit?: number
   }
 
   /**
-   * MemoryChunk without action
+   * MemoryEntry without action
    */
-  export type MemoryChunkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MemoryEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
+    include?: MemoryEntryInclude<ExtArgs> | null
   }
 
 
@@ -2105,7 +2105,7 @@ export namespace Prisma {
     updatedAt?: boolean
     profilePicture?: boolean
     bio?: boolean
-    MemoryChunk?: boolean | User$MemoryChunkArgs<ExtArgs>
+    MemoryEntry?: boolean | User$MemoryEntryArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2162,7 +2162,7 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "password" | "firstName" | "lastName" | "mobile" | "email" | "isSignedIn" | "isDeleted" | "hasAcceptedTnC" | "role" | "createdAt" | "updatedAt" | "profilePicture" | "bio", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    MemoryChunk?: boolean | User$MemoryChunkArgs<ExtArgs>
+    MemoryEntry?: boolean | User$MemoryEntryArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2171,7 +2171,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      MemoryChunk: Prisma.$MemoryChunkPayload<ExtArgs>[]
+      MemoryEntry: Prisma.$MemoryEntryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2582,7 +2582,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    MemoryChunk<T extends User$MemoryChunkArgs<ExtArgs> = {}>(args?: Subset<T, User$MemoryChunkArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryChunkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MemoryEntry<T extends User$MemoryEntryArgs<ExtArgs> = {}>(args?: Subset<T, User$MemoryEntryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3014,27 +3014,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.MemoryChunk
+   * User.MemoryEntry
    */
-  export type User$MemoryChunkArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$MemoryEntryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MemoryChunk
+     * Select specific fields to fetch from the MemoryEntry
      */
-    select?: MemoryChunkSelect<ExtArgs> | null
+    select?: MemoryEntrySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the MemoryChunk
+     * Omit specific fields from the MemoryEntry
      */
-    omit?: MemoryChunkOmit<ExtArgs> | null
+    omit?: MemoryEntryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryChunkInclude<ExtArgs> | null
-    where?: MemoryChunkWhereInput
-    orderBy?: MemoryChunkOrderByWithRelationInput | MemoryChunkOrderByWithRelationInput[]
-    cursor?: MemoryChunkWhereUniqueInput
+    include?: MemoryEntryInclude<ExtArgs> | null
+    where?: MemoryEntryWhereInput
+    orderBy?: MemoryEntryOrderByWithRelationInput | MemoryEntryOrderByWithRelationInput[]
+    cursor?: MemoryEntryWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: MemoryChunkScalarFieldEnum | MemoryChunkScalarFieldEnum[]
+    distinct?: MemoryEntryScalarFieldEnum | MemoryEntryScalarFieldEnum[]
   }
 
   /**
@@ -3070,14 +3070,14 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const MemoryChunkScalarFieldEnum: {
+  export const MemoryEntryScalarFieldEnum: {
     id: 'id',
     content: 'content',
     createdAt: 'createdAt',
     userId: 'userId'
   };
 
-  export type MemoryChunkScalarFieldEnum = (typeof MemoryChunkScalarFieldEnum)[keyof typeof MemoryChunkScalarFieldEnum]
+  export type MemoryEntryScalarFieldEnum = (typeof MemoryEntryScalarFieldEnum)[keyof typeof MemoryEntryScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -3195,18 +3195,18 @@ export namespace Prisma {
    */
 
 
-  export type MemoryChunkWhereInput = {
-    AND?: MemoryChunkWhereInput | MemoryChunkWhereInput[]
-    OR?: MemoryChunkWhereInput[]
-    NOT?: MemoryChunkWhereInput | MemoryChunkWhereInput[]
-    id?: StringFilter<"MemoryChunk"> | string
-    content?: StringFilter<"MemoryChunk"> | string
-    createdAt?: DateTimeFilter<"MemoryChunk"> | Date | string
-    userId?: StringFilter<"MemoryChunk"> | string
+  export type MemoryEntryWhereInput = {
+    AND?: MemoryEntryWhereInput | MemoryEntryWhereInput[]
+    OR?: MemoryEntryWhereInput[]
+    NOT?: MemoryEntryWhereInput | MemoryEntryWhereInput[]
+    id?: StringFilter<"MemoryEntry"> | string
+    content?: StringFilter<"MemoryEntry"> | string
+    createdAt?: DateTimeFilter<"MemoryEntry"> | Date | string
+    userId?: StringFilter<"MemoryEntry"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
-  export type MemoryChunkOrderByWithRelationInput = {
+  export type MemoryEntryOrderByWithRelationInput = {
     id?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
@@ -3214,35 +3214,35 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
   }
 
-  export type MemoryChunkWhereUniqueInput = Prisma.AtLeast<{
+  export type MemoryEntryWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: MemoryChunkWhereInput | MemoryChunkWhereInput[]
-    OR?: MemoryChunkWhereInput[]
-    NOT?: MemoryChunkWhereInput | MemoryChunkWhereInput[]
-    content?: StringFilter<"MemoryChunk"> | string
-    createdAt?: DateTimeFilter<"MemoryChunk"> | Date | string
-    userId?: StringFilter<"MemoryChunk"> | string
+    AND?: MemoryEntryWhereInput | MemoryEntryWhereInput[]
+    OR?: MemoryEntryWhereInput[]
+    NOT?: MemoryEntryWhereInput | MemoryEntryWhereInput[]
+    content?: StringFilter<"MemoryEntry"> | string
+    createdAt?: DateTimeFilter<"MemoryEntry"> | Date | string
+    userId?: StringFilter<"MemoryEntry"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
-  export type MemoryChunkOrderByWithAggregationInput = {
+  export type MemoryEntryOrderByWithAggregationInput = {
     id?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
-    _count?: MemoryChunkCountOrderByAggregateInput
-    _max?: MemoryChunkMaxOrderByAggregateInput
-    _min?: MemoryChunkMinOrderByAggregateInput
+    _count?: MemoryEntryCountOrderByAggregateInput
+    _max?: MemoryEntryMaxOrderByAggregateInput
+    _min?: MemoryEntryMinOrderByAggregateInput
   }
 
-  export type MemoryChunkScalarWhereWithAggregatesInput = {
-    AND?: MemoryChunkScalarWhereWithAggregatesInput | MemoryChunkScalarWhereWithAggregatesInput[]
-    OR?: MemoryChunkScalarWhereWithAggregatesInput[]
-    NOT?: MemoryChunkScalarWhereWithAggregatesInput | MemoryChunkScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"MemoryChunk"> | string
-    content?: StringWithAggregatesFilter<"MemoryChunk"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"MemoryChunk"> | Date | string
-    userId?: StringWithAggregatesFilter<"MemoryChunk"> | string
+  export type MemoryEntryScalarWhereWithAggregatesInput = {
+    AND?: MemoryEntryScalarWhereWithAggregatesInput | MemoryEntryScalarWhereWithAggregatesInput[]
+    OR?: MemoryEntryScalarWhereWithAggregatesInput[]
+    NOT?: MemoryEntryScalarWhereWithAggregatesInput | MemoryEntryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MemoryEntry"> | string
+    content?: StringWithAggregatesFilter<"MemoryEntry"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MemoryEntry"> | Date | string
+    userId?: StringWithAggregatesFilter<"MemoryEntry"> | string
   }
 
   export type UserWhereInput = {
@@ -3263,7 +3263,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     profilePicture?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
-    MemoryChunk?: MemoryChunkListRelationFilter
+    MemoryEntry?: MemoryEntryListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3281,7 +3281,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     profilePicture?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
-    MemoryChunk?: MemoryChunkOrderByRelationAggregateInput
+    MemoryEntry?: MemoryEntryOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3302,7 +3302,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     profilePicture?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
-    MemoryChunk?: MemoryChunkListRelationFilter
+    MemoryEntry?: MemoryEntryListRelationFilter
   }, "id" | "mobile" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -3345,27 +3345,27 @@ export namespace Prisma {
     bio?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
-  export type MemoryChunkUpdateInput = {
+  export type MemoryEntryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutMemoryChunkNestedInput
+    user?: UserUpdateOneRequiredWithoutMemoryEntryNestedInput
   }
 
-  export type MemoryChunkUncheckedUpdateInput = {
+  export type MemoryEntryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type MemoryChunkUpdateManyMutationInput = {
+  export type MemoryEntryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MemoryChunkUncheckedUpdateManyInput = {
+  export type MemoryEntryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3387,7 +3387,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     profilePicture?: string | null
     bio?: string | null
-    MemoryChunk?: MemoryChunkCreateNestedManyWithoutUserInput
+    MemoryEntry?: MemoryEntryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3405,7 +3405,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     profilePicture?: string | null
     bio?: string | null
-    MemoryChunk?: MemoryChunkUncheckedCreateNestedManyWithoutUserInput
+    MemoryEntry?: MemoryEntryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -3423,7 +3423,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profilePicture?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
-    MemoryChunk?: MemoryChunkUpdateManyWithoutUserNestedInput
+    MemoryEntry?: MemoryEntryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3441,7 +3441,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profilePicture?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
-    MemoryChunk?: MemoryChunkUncheckedUpdateManyWithoutUserNestedInput
+    MemoryEntry?: MemoryEntryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3526,21 +3526,21 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
-  export type MemoryChunkCountOrderByAggregateInput = {
+  export type MemoryEntryCountOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
   }
 
-  export type MemoryChunkMaxOrderByAggregateInput = {
+  export type MemoryEntryMaxOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
   }
 
-  export type MemoryChunkMinOrderByAggregateInput = {
+  export type MemoryEntryMinOrderByAggregateInput = {
     id?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
@@ -3606,10 +3606,10 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type MemoryChunkListRelationFilter = {
-    every?: MemoryChunkWhereInput
-    some?: MemoryChunkWhereInput
-    none?: MemoryChunkWhereInput
+  export type MemoryEntryListRelationFilter = {
+    every?: MemoryEntryWhereInput
+    some?: MemoryEntryWhereInput
+    none?: MemoryEntryWhereInput
   }
 
   export type SortOrderInput = {
@@ -3617,7 +3617,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type MemoryChunkOrderByRelationAggregateInput = {
+  export type MemoryEntryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3716,20 +3716,20 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type UserUpdateOneRequiredWithoutMemoryChunkNestedInput = {
-    create?: XOR<UserCreateWithoutMemoryChunkInput, UserUncheckedCreateWithoutMemoryChunkInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMemoryChunkInput
-    upsert?: UserUpsertWithoutMemoryChunkInput
+  export type UserUpdateOneRequiredWithoutMemoryEntryNestedInput = {
+    create?: XOR<UserCreateWithoutMemoryEntryInput, UserUncheckedCreateWithoutMemoryEntryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMemoryEntryInput
+    upsert?: UserUpsertWithoutMemoryEntryInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMemoryChunkInput, UserUpdateWithoutMemoryChunkInput>, UserUncheckedUpdateWithoutMemoryChunkInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMemoryEntryInput, UserUpdateWithoutMemoryEntryInput>, UserUncheckedUpdateWithoutMemoryEntryInput>
   }
 
-  export type MemoryChunkCreateNestedManyWithoutUserInput = {
-    connect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
+  export type MemoryEntryCreateNestedManyWithoutUserInput = {
+    connect?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
   }
 
-  export type MemoryChunkUncheckedCreateNestedManyWithoutUserInput = {
-    connect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
+  export type MemoryEntryUncheckedCreateNestedManyWithoutUserInput = {
+    connect?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -3744,24 +3744,24 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type MemoryChunkUpdateManyWithoutUserNestedInput = {
-    set?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
-    disconnect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
-    delete?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
-    connect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
-    update?: MemoryChunkUpdateWithWhereUniqueWithoutUserInput | MemoryChunkUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MemoryChunkUpdateManyWithWhereWithoutUserInput | MemoryChunkUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MemoryChunkScalarWhereInput | MemoryChunkScalarWhereInput[]
+  export type MemoryEntryUpdateManyWithoutUserNestedInput = {
+    set?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
+    disconnect?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
+    delete?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
+    connect?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
+    update?: MemoryEntryUpdateWithWhereUniqueWithoutUserInput | MemoryEntryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MemoryEntryUpdateManyWithWhereWithoutUserInput | MemoryEntryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MemoryEntryScalarWhereInput | MemoryEntryScalarWhereInput[]
   }
 
-  export type MemoryChunkUncheckedUpdateManyWithoutUserNestedInput = {
-    set?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
-    disconnect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
-    delete?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
-    connect?: MemoryChunkWhereUniqueInput | MemoryChunkWhereUniqueInput[]
-    update?: MemoryChunkUpdateWithWhereUniqueWithoutUserInput | MemoryChunkUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MemoryChunkUpdateManyWithWhereWithoutUserInput | MemoryChunkUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MemoryChunkScalarWhereInput | MemoryChunkScalarWhereInput[]
+  export type MemoryEntryUncheckedUpdateManyWithoutUserNestedInput = {
+    set?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
+    disconnect?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
+    delete?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
+    connect?: MemoryEntryWhereUniqueInput | MemoryEntryWhereUniqueInput[]
+    update?: MemoryEntryUpdateWithWhereUniqueWithoutUserInput | MemoryEntryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MemoryEntryUpdateManyWithWhereWithoutUserInput | MemoryEntryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MemoryEntryScalarWhereInput | MemoryEntryScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3903,7 +3903,7 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type UserCreateWithoutMemoryChunkInput = {
+  export type UserCreateWithoutMemoryEntryInput = {
     id?: string
     password: string
     firstName: string
@@ -3920,7 +3920,7 @@ export namespace Prisma {
     bio?: string | null
   }
 
-  export type UserUncheckedCreateWithoutMemoryChunkInput = {
+  export type UserUncheckedCreateWithoutMemoryEntryInput = {
     id?: string
     password: string
     firstName: string
@@ -3937,23 +3937,23 @@ export namespace Prisma {
     bio?: string | null
   }
 
-  export type UserCreateOrConnectWithoutMemoryChunkInput = {
+  export type UserCreateOrConnectWithoutMemoryEntryInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutMemoryChunkInput, UserUncheckedCreateWithoutMemoryChunkInput>
+    create: XOR<UserCreateWithoutMemoryEntryInput, UserUncheckedCreateWithoutMemoryEntryInput>
   }
 
-  export type UserUpsertWithoutMemoryChunkInput = {
-    update: XOR<UserUpdateWithoutMemoryChunkInput, UserUncheckedUpdateWithoutMemoryChunkInput>
-    create: XOR<UserCreateWithoutMemoryChunkInput, UserUncheckedCreateWithoutMemoryChunkInput>
+  export type UserUpsertWithoutMemoryEntryInput = {
+    update: XOR<UserUpdateWithoutMemoryEntryInput, UserUncheckedUpdateWithoutMemoryEntryInput>
+    create: XOR<UserCreateWithoutMemoryEntryInput, UserUncheckedCreateWithoutMemoryEntryInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutMemoryChunkInput = {
+  export type UserUpdateToOneWithWhereWithoutMemoryEntryInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutMemoryChunkInput, UserUncheckedUpdateWithoutMemoryChunkInput>
+    data: XOR<UserUpdateWithoutMemoryEntryInput, UserUncheckedUpdateWithoutMemoryEntryInput>
   }
 
-  export type UserUpdateWithoutMemoryChunkInput = {
+  export type UserUpdateWithoutMemoryEntryInput = {
     id?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -3970,7 +3970,7 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type UserUncheckedUpdateWithoutMemoryChunkInput = {
+  export type UserUncheckedUpdateWithoutMemoryEntryInput = {
     id?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -3987,39 +3987,39 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type MemoryChunkUpdateWithWhereUniqueWithoutUserInput = {
-    where: MemoryChunkWhereUniqueInput
-    data: XOR<MemoryChunkUpdateWithoutUserInput, MemoryChunkUncheckedUpdateWithoutUserInput>
+  export type MemoryEntryUpdateWithWhereUniqueWithoutUserInput = {
+    where: MemoryEntryWhereUniqueInput
+    data: XOR<MemoryEntryUpdateWithoutUserInput, MemoryEntryUncheckedUpdateWithoutUserInput>
   }
 
-  export type MemoryChunkUpdateManyWithWhereWithoutUserInput = {
-    where: MemoryChunkScalarWhereInput
-    data: XOR<MemoryChunkUpdateManyMutationInput, MemoryChunkUncheckedUpdateManyWithoutUserInput>
+  export type MemoryEntryUpdateManyWithWhereWithoutUserInput = {
+    where: MemoryEntryScalarWhereInput
+    data: XOR<MemoryEntryUpdateManyMutationInput, MemoryEntryUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type MemoryChunkScalarWhereInput = {
-    AND?: MemoryChunkScalarWhereInput | MemoryChunkScalarWhereInput[]
-    OR?: MemoryChunkScalarWhereInput[]
-    NOT?: MemoryChunkScalarWhereInput | MemoryChunkScalarWhereInput[]
-    id?: StringFilter<"MemoryChunk"> | string
-    content?: StringFilter<"MemoryChunk"> | string
-    createdAt?: DateTimeFilter<"MemoryChunk"> | Date | string
-    userId?: StringFilter<"MemoryChunk"> | string
+  export type MemoryEntryScalarWhereInput = {
+    AND?: MemoryEntryScalarWhereInput | MemoryEntryScalarWhereInput[]
+    OR?: MemoryEntryScalarWhereInput[]
+    NOT?: MemoryEntryScalarWhereInput | MemoryEntryScalarWhereInput[]
+    id?: StringFilter<"MemoryEntry"> | string
+    content?: StringFilter<"MemoryEntry"> | string
+    createdAt?: DateTimeFilter<"MemoryEntry"> | Date | string
+    userId?: StringFilter<"MemoryEntry"> | string
   }
 
-  export type MemoryChunkUpdateWithoutUserInput = {
+  export type MemoryEntryUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MemoryChunkUncheckedUpdateWithoutUserInput = {
+  export type MemoryEntryUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MemoryChunkUncheckedUpdateManyWithoutUserInput = {
+  export type MemoryEntryUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

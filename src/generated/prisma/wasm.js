@@ -120,7 +120,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.MemoryChunkScalarFieldEnum = {
+exports.Prisma.MemoryEntryScalarFieldEnum = {
   id: 'id',
   content: 'content',
   createdAt: 'createdAt',
@@ -164,7 +164,7 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  MemoryChunk: 'MemoryChunk',
+  MemoryEntry: 'MemoryEntry',
   User: 'User'
 };
 

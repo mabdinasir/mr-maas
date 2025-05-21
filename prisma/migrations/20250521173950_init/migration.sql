@@ -2,12 +2,13 @@
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
 -- CreateTable
-CREATE TABLE "MemoryChunk" (
+CREATE TABLE "MemoryEntry" (
     "id" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userId" TEXT NOT NULL,
 
-    CONSTRAINT "MemoryChunk_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "MemoryEntry_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -37,4 +38,4 @@ CREATE UNIQUE INDEX "User_mobile_key" ON "User"("mobile");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- AddForeignKey
-ALTER TABLE "MemoryChunk" ADD CONSTRAINT "MemoryChunk_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "MemoryEntry" ADD CONSTRAINT "MemoryEntry_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
