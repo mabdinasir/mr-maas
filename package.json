@@ -16,7 +16,7 @@
         "start": "bun run pm2 start dist/main.js --name mr-maas",
         "dev": "bun --watch src/main.ts",
         "type-check": "bun run tsc --noEmit --watch",
-        "lint": "bun run eslint . --ignore-pattern 'dist'",
+        "lint": "bun run eslint .",
         "lint:fix": "bun run eslint . --fix --ignore-pattern 'dist'",
         "fmt": "bun run prettier --write .",
         "fmt:check": "bun run prettier --check ."
