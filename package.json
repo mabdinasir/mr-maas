@@ -17,7 +17,7 @@
         "dev": "bun --watch src/main.ts",
         "type-check": "bun run tsc --noEmit --watch",
         "lint": "bun run eslint .",
-        "lint:fix": "bun run eslint . --fix --ignore-pattern 'dist'",
+        "lint:fix": "bun run eslint . --fix",
         "fmt": "bun run prettier --write .",
         "fmt:check": "bun run prettier --check ."
     },
