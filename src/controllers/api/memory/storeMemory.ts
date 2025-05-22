@@ -1,11 +1,11 @@
 import type { RequestHandler } from 'express'
 import { prisma } from '@lib/prismaClient'
 import { memoryEntrySchema } from '@schemas/memoryEntry.schema'
-// import { getEmbeddings } from '@lib/ai-sdk/embed'
+import { getEmbeddings } from '@lib/ai-sdk/embed'
 
 const storeMemory: RequestHandler = async (request, response) => {
     try {
-        // Validate request
+        // ✅ 1: Validate request body
         const memoryData = await memoryEntrySchema.safeParse(request.body)
         if (!memoryData.success) {
             response.status(400).json({
@@ -21,18 +21,29 @@ const storeMemory: RequestHandler = async (request, response) => {
 
         const { content, userId } = memoryData.data
 
-        // Generate embeddings
-        // const [embedding] = await getEmbeddings([content])
+        // ✅ 2: Generate 768-dim embedding
+        const [embedding] = await getEmbeddings([content])
+        if (!embedding || embedding.length !== 768) {
+            throw new Error(`Embedding must be a 768-dimensional array`)
+        }
 
-        // Store in DB
-        const memory = await prisma.memoryEntry.create({
-            data: {
-                content,
-                // embedding,
-                userId,
-            },
-        })
+        // ✅ 3: Format embedding for SQL vector insertion
+        const embeddingSqlLiteral = `ARRAY[${embedding.join(',')}]`
 
+        // ✅ 4: Insert only required fields (let DB handle id + createdAt)
+        const result = await prisma.$queryRawUnsafe(
+            `
+            INSERT INTO "MemoryEntry" ("userId", content, embedding)
+            VALUES ($1, $2, ${embeddingSqlLiteral}::vector)
+            RETURNING id, content, "createdAt", "userId", embedding::text AS embedding
+        `,
+            userId,
+            content,
+        )
+
+        const memory = Array.isArray(result) ? result[0] : result
+
+        // ✅ 5: Respond with stored memory
         response.status(200).json({
             success: true,
             message: 'Memory stored successfully!',
