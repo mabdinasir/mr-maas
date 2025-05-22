@@ -27,7 +27,8 @@
             "@prisma/*": ["../prisma/*"],
             "@middleware/*": ["middleware/*"],
             "@schemas/*": ["schemas/*"],
-            "@config/*": ["lib/config/*"]
+            "@config/*": ["lib/config/*"],
+            "@generated/*": ["generated/*"],
         }
     },
     "exclude": ["node_modules", "dist", "eslint.config.js"]

@@ -58,6 +58,7 @@
         "lodash": "^4.17.21",
         "node-cron": "^3.0.3",
         "nodemailer": "^6.10.0",
+        "ollama": "^0.5.15",
         "ollama-ai-provider": "^1.2.0",
         "pm2": "^6.0.5",
         "zod": "^3.24.1"
