@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'express'
 import { prisma } from '@lib/prismaClient'
-import { memoryEntrySchema } from '@schemas/memoryEntry'
+import { memoryEntrySchema } from '@schemas/memoryEntry.schema'
 // import { getEmbeddings } from '@lib/ai-sdk/embed'
 
 const storeMemory: RequestHandler = async (request, response) => {

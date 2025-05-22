@@ -28,7 +28,7 @@
             "@middleware/*": ["middleware/*"],
             "@schemas/*": ["schemas/*"],
             "@config/*": ["lib/config/*"],
-            "@generated/*": ["generated/*"],
+            "@generated/*": ["generated/*"]
         }
     },
     "exclude": ["node_modules", "dist", "eslint.config.js"]
