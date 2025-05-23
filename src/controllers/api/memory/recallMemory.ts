@@ -1,15 +1,8 @@
 import type { RequestHandler } from 'express'
-import { z } from 'zod'
 import { prisma } from '@lib/prismaClient'
 import { getEmbeddings } from '@lib/ai-sdk/embed'
 import { MemoryEntry } from '@prisma/client'
-
-// Zod schema for request body validation
-const recallMemorySchema = z.object({
-    query: z.string().min(1, 'Query is required'),
-    userId: z.string().uuid('Invalid user ID'),
-    topK: z.number().min(1).max(50).optional(), // Optional top-k value. The number of memories to return
-})
+import { recallMemorySchema } from '@schemas/recallMemory.schema'
 
 const recallMemory: RequestHandler = async (request, response) => {
     try {

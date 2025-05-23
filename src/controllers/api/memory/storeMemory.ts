@@ -1,12 +1,12 @@
 import type { RequestHandler } from 'express'
 import { prisma } from '@lib/prismaClient'
-import { memoryEntrySchema } from '@schemas/memoryEntry.schema'
+import { storeMemorySchema } from '@schemas/storeMemory.schema'
 import { getEmbeddings } from '@lib/ai-sdk/embed'
 
 const storeMemory: RequestHandler = async (request, response) => {
     try {
         // ✅ 1: Validate request body
-        const memoryData = await memoryEntrySchema.safeParse(request.body)
+        const memoryData = await storeMemorySchema.safeParse(request.body)
         if (!memoryData.success) {
             response.status(400).json({
                 success: false,
