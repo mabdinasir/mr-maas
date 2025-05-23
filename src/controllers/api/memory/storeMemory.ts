@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'express'
 import { prisma } from '@lib/prismaClient'
 import { storeMemorySchema } from '@schemas/storeMemory.schema'
-import { getEmbeddings } from '@lib/ai-sdk/embed'
+import { embedWithOllama } from '@lib/ai-sdk/embedWithOllama'
 
 const storeMemory: RequestHandler = async (request, response) => {
     try {
@@ -22,7 +22,7 @@ const storeMemory: RequestHandler = async (request, response) => {
         const { content, userId } = memoryData.data
 
         // ✅ 2: Generate 768-dim embedding
-        const [embedding] = await getEmbeddings([content])
+        const [embedding] = await embedWithOllama([content])
         if (!embedding || embedding.length !== 768) {
             throw new Error(`Embedding must be a 768-dimensional array`)
         }

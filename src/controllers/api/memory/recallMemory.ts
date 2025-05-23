@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'express'
 import { prisma } from '@lib/prismaClient'
-import { getEmbeddings } from '@lib/ai-sdk/embed'
+import { embedWithOllama } from '@lib/ai-sdk/embedWithOllama'
 import { MemoryEntry } from '@prisma/client'
 import { recallMemorySchema } from '@schemas/recallMemory.schema'
 
@@ -24,7 +24,7 @@ const recallMemory: RequestHandler = async (request, response) => {
         const { query, userId, topK = 5 } = recallData.data
 
         // Get embedding for query
-        const [queryEmbedding] = await getEmbeddings([query])
+        const [queryEmbedding] = await embedWithOllama([query])
 
         // Perform semantic search using pgvector <=> operator (cosine distance)
         const memories = await prisma.$queryRawUnsafe<MemoryEntry[]>(

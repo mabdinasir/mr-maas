@@ -1,6 +1,6 @@
 import ollama from 'ollama'
 
-export const getEmbeddings = async (inputs: string[]) => {
+export const embedWithOllama = async (inputs: string[]) => {
     const embeddings = await Promise.all(
         inputs.map(async (input) => {
             const res = await ollama.embeddings({
@@ -14,4 +14,4 @@ export const getEmbeddings = async (inputs: string[]) => {
     return embeddings
 }
 
-// const embeddings = await getEmbeddings(values)
+// const embeddings = await embedWithOllama(values)

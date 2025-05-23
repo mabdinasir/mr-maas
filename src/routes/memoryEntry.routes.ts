@@ -1,5 +1,6 @@
 import recallMemory from '@controllers/api/memory/recallMemory'
 import storeMemory from '@controllers/api/memory/storeMemory'
+import summarizeMemory from '@controllers/api/memory/summarizeMemory'
 import { RouteGroup } from '@models/routes'
 
 const memoryEntryRoutes: RouteGroup = {
@@ -14,6 +15,11 @@ const memoryEntryRoutes: RouteGroup = {
             method: 'post',
             path: '/recallMemory',
             handler: recallMemory,
+        },
+        {
+            method: 'post',
+            path: '/summarizeMemory',
+            handler: summarizeMemory,
         },
     ],
 }
