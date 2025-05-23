@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "declaration": true,
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "strict": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src"
+    ],
+    "name": "mr-maas-sdk",
+    "version": "0.1.0",
+    "description": "JavaScript SDK for MR Memory-as-a-Service",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "tsup": "^8.5.0",
+        "typescript": "^5.8.3"
+    }
+}
