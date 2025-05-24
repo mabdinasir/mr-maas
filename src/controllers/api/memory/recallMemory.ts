@@ -40,6 +40,14 @@ const recallMemory: RequestHandler = async (request, response) => {
             .orderBy(desc(similarity))
             .limit(topK)
 
+        if (memories.length === 0) {
+            response.status(404).json({
+                success: false,
+                message: 'No relevant memories found.',
+            })
+            return
+        }
+
         response.status(200).json({
             success: true,
             message: 'Memories recalled successfully!',
