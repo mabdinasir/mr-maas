@@ -1,32 +1,37 @@
 import type { RequestHandler } from 'express'
 import { z } from 'zod'
+import { eq } from 'drizzle-orm'
 import { verifyPassword } from '@lib/utils/security/hashPassword'
 import { loginSchema } from '@schemas/index'
-import { prisma } from '@lib/prismaClient'
 import { omitPassword } from '@lib/utils/security/omitPassword'
 import { generateJwtToken } from '@lib/utils/auth/generateJwtToken'
+import { users } from '@db/schema'
+import { db } from '@db/client'
 
 const login: RequestHandler = async (request, response) => {
     try {
         // Validate request body with Zod
         const userData = await loginSchema.parseAsync(request.body)
 
-        const existingUser = await prisma.user.findUnique({ where: { email: userData.email } })
+        // Find user by email
+        const [existingUser] = await db.select().from(users).where(eq(users.email, userData.email))
+
         if (!existingUser) {
             response.status(404).json({ success: false, message: 'Sorry, user not found!' })
             return
         }
 
         // Verify password
-        await verifyPassword(userData.password, existingUser?.password || '', response)
+        await verifyPassword(userData.password, existingUser.password || '', response)
 
-        // Update user's signed-in status
-        const loggedInUser = await prisma.user.update({
-            where: { id: existingUser?.id },
-            data: { isSignedIn: true, isDeleted: false },
-        })
+        // Update user's sign-in status
+        const [loggedInUser] = await db
+            .update(users)
+            .set({ isSignedIn: true, isDeleted: false, updatedAt: new Date() })
+            .where(eq(users.id, existingUser.id))
+            .returning()
 
-        // Generate JWT and remove password from response
+        // Generate JWT and remove password
         const jwt = generateJwtToken(loggedInUser)
         const userWithoutPassword = omitPassword(loggedInUser)
 
@@ -46,6 +51,7 @@ const login: RequestHandler = async (request, response) => {
                     message: err.message,
                 })),
             })
+            return
         }
 
         response.status(500).json({

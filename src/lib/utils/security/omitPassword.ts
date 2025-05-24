@@ -1,7 +1,8 @@
-import { User } from '@prisma/client'
-import lodash from 'lodash'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+import { User } from '@models/user'
 
 export const omitPassword = (user: User) => {
-    const userWithoutPassword = lodash.omit(user, ['password'])
+    const { password, ...userWithoutPassword } = user
     return userWithoutPassword
 }

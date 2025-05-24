@@ -1,11 +1,13 @@
 /* eslint-disable callback-return */
 /* eslint-disable require-atomic-updates */
 import type { RequestHandler } from 'express'
-import { prisma } from '@lib/prismaClient'
-import { authorizationSchema } from '@schemas/index'
-import jwt from 'jsonwebtoken'
 import { z } from 'zod'
+import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import { eq } from 'drizzle-orm'
+import { db } from '@db/client'
+import { users, tokenBlacklist } from '@db/schema'
+import { authorizationSchema } from '@schemas/index'
 import { verifyJwtToken } from '@lib/utils/auth/generateJwtToken'
 
 dotenv.config()
@@ -32,25 +34,27 @@ export const authMiddleware: RequestHandler = async (request, response, next) =>
         const decoded = verifyJwtToken(token)
 
         // Check if user exists
-        const isExistingUser = await prisma.user.findUnique({ where: { email: decoded.email } })
+        const [isExistingUser] = await db.select().from(users).where(eq(users.email, decoded.email))
+
         if (!isExistingUser) {
             response.status(404).json({ success: false, message: 'User not found' })
             return
         }
 
-        // const isSignedIn = await prisma.user.findUnique({
-        //     where: { email: decoded.email },
-        //     select: { isSignedIn: true },
-        // })
-        // if (!isSignedIn?.isSignedIn) {
+        // Optional: Check if user is signed in
+        // if (!isExistingUser.isSignedIn) {
         //     response.status(401).json({ success: false, message: 'Unauthorized: User is not signed in!' })
         //     return
         // }
 
         // Check token blacklist
-        const blacklistedToken = await prisma.tokenBlacklist.findUnique({ where: { token } })
+        const [blacklistedToken] = await db.select().from(tokenBlacklist).where(eq(tokenBlacklist.token, token))
+
         if (blacklistedToken) {
-            response.status(401).json({ success: false, message: 'Token used has been revoked! Please sign in first!' })
+            response.status(401).json({
+                success: false,
+                message: 'Token used has been revoked! Please sign in first!',
+            })
             return
         }
 
@@ -65,7 +69,7 @@ export const authMiddleware: RequestHandler = async (request, response, next) =>
         }
 
         if (error instanceof jwt.JsonWebTokenError) {
-            response.status(401).json({ success: false, message: 'Invalid session' })
+            response.status(401).json({ success: false, message: `Invalid session: ${error.message}` })
             return
         }
 
@@ -81,6 +85,9 @@ export const authMiddleware: RequestHandler = async (request, response, next) =>
             return
         }
 
-        response.status(500).json({ success: false, message: `Internal server error: ${(error as Error).message}` })
+        response.status(500).json({
+            success: false,
+            message: `Internal server error: ${(error as Error).message}`,
+        })
     }
 }

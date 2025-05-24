@@ -1,12 +1,13 @@
 import type { RequestHandler } from 'express'
-import { prisma } from '@lib/prismaClient'
 import { storeMemorySchema } from '@schemas/storeMemory.schema'
 import { embedWithOllama } from '@lib/ai-sdk/embedWithOllama'
+import { db } from '@db/client'
+import { memoryEntries } from '@db/schema'
 
 const storeMemory: RequestHandler = async (request, response) => {
     try {
         // ✅ 1: Validate request body
-        const memoryData = await storeMemorySchema.safeParse(request.body)
+        const memoryData = storeMemorySchema.safeParse(request.body)
         if (!memoryData.success) {
             response.status(400).json({
                 success: false,
@@ -24,26 +25,19 @@ const storeMemory: RequestHandler = async (request, response) => {
         // ✅ 2: Generate 768-dim embedding
         const [embedding] = await embedWithOllama([content])
         if (!embedding || embedding.length !== 768) {
-            throw new Error(`Embedding must be a 768-dimensional array`)
+            throw new Error('Embedding must be a 768-dimensional array')
         }
 
-        // ✅ 3: Format embedding for SQL vector insertion
-        const embeddingSqlLiteral = `ARRAY[${embedding.join(',')}]`
+        // ✅ 3: Insert into DB using Drizzle
+        const [memory] = await db.insert(memoryEntries).values({ userId, content, embedding }).returning({
+            id: memoryEntries.id,
+            userId: memoryEntries.userId,
+            content: memoryEntries.content,
+            embedding: memoryEntries.embedding,
+            createdAt: memoryEntries.createdAt,
+        })
 
-        // ✅ 4: Insert only required fields (let DB handle id + createdAt)
-        const result = await prisma.$queryRawUnsafe(
-            `
-            INSERT INTO "MemoryEntry" ("userId", content, embedding)
-            VALUES ($1, $2, ${embeddingSqlLiteral}::vector)
-            RETURNING id, content, "createdAt", "userId", embedding::text AS embedding
-        `,
-            userId,
-            content,
-        )
-
-        const memory = Array.isArray(result) ? result[0] : result
-
-        // ✅ 5: Respond with stored memory
+        // ✅ 4: Respond with success
         response.status(200).json({
             success: true,
             message: 'Memory stored successfully!',

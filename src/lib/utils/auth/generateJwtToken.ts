@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { User } from '@prisma/client'
+import { User } from '@models/user'
 import type { JwtPayload } from '@models/jwtPayload'
 import dotenv from 'dotenv'
 import { omitPassword } from '../security/omitPassword'

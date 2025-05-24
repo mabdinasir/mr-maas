@@ -1,6 +1,6 @@
 # Mr MaaS Backend
 
-**Mr MaaS Backend** is a Node.js backend service built with Express, TypeScript, and Prisma. It provides APIs for managing users and memory entries with vector embeddings stored in PostgreSQL using the `pgvector` extension. The backend is designed for AI-powered applications, leveraging vector search for semantic memory retrieval.
+**Mr MaaS Backend** is a Node.js backend service built with Express, TypeScript, and Drizzle ORM. It provides APIs for managing users and memory entries with vector embeddings stored in PostgreSQL using the `pgvector` extension. The backend is designed for AI-powered applications, leveraging vector search for semantic memory retrieval.
 
 ---
 
@@ -37,7 +37,7 @@
 - **Node.js** (v22.x via Bun)
 - **TypeScript**
 - **Express**
-- **Prisma** (ORM)
+- **Drizzle ORM**
 - **PostgreSQL** with `pgvector` extension
 - **Zod** for schema validation
 - **PM2** for production process management
@@ -83,13 +83,24 @@ Follow these steps to create and prepare the PostgreSQL database for Mr MaaS:
     CREATE EXTENSION IF NOT EXISTS vector;
     ```
 
-5. **Exit `psql` and run Prisma migrations to set up schema:**
+5. **Exit `psql` and set up Drizzle:**
 
     ```bash
-    prisma migrate dev --name init
+    npx drizzle-kit generate --custom
     ```
 
-This will create all necessary tables including `MemoryEntry` with vector embedding support.
+    Edit the generated SQL file (e.g., `drizzle/0001_init.sql`) and manually add:
+
+    ```sql
+    CREATE EXTENSION IF NOT EXISTS vector;
+    ```
+
+6. **Run migrations:**
+
+    ```bash
+    npx drizzle-kit generate
+    npx drizzle-kit migrate
+    ```
 
 ---
 
@@ -110,17 +121,18 @@ This will create all necessary tables including `MemoryEntry` with vector embedd
 
 3. Create a `.env` file in the root with your environment variables:
 
-    ```
+    ```env
     DATABASE_URL=postgresql://user:password@localhost:5432/mr-maas
     PORT=3000
     JWT_SECRET=your_jwt_secret_here
     ```
 
-4. Generate Prisma client:
+4. Build and run the app:
 
-    ```bash
-    bun run prisma generate
+    ````bash
+    bun run build
     ```
+    ````
 
 5. Start the development server:
 
@@ -140,15 +152,15 @@ This will create all necessary tables including `MemoryEntry` with vector embedd
 
 ## Scripts
 
-| Command             | Description                                   |
-| ------------------- | --------------------------------------------- |
-| `bun run dev`       | Start server in development mode              |
-| `bun run build`     | Compile TypeScript and generate Prisma client |
-| `bun run start`     | Start production server with PM2              |
-| `bun run lint`      | Run ESLint checks                             |
-| `bun run lint:fix`  | Fix linting issues automatically              |
-| `bun run fmt`       | Format code with Prettier                     |
-| `bun run fmt:check` | Check formatting with Prettier                |
+| Command             | Description                                 |
+| ------------------- | ------------------------------------------- |
+| `bun run dev`       | Start server in development mode            |
+| `bun run build`     | Compile TypeScript and generate Drizzle SQL |
+| `bun run start`     | Start production server with PM2            |
+| `bun run lint`      | Run ESLint checks                           |
+| `bun run lint:fix`  | Fix linting issues automatically            |
+| `bun run fmt`       | Format code with Prettier                   |
+| `bun run fmt:check` | Check formatting with Prettier              |
 
 ---
 
@@ -220,4 +232,4 @@ For internal support or questions, contact the backend engineering team.
 
 ---
 
-_Powered by Bun, Prisma, Express, and PostgreSQL with vector embeddings for AI-powered memory management._
+_Powered by Bun, Drizzle ORM, Express, and PostgreSQL with vector embeddings for AI-powered memory management._

@@ -1,12 +1,12 @@
 import type { RequestHandler } from 'express'
-import { prisma } from '@lib/prismaClient'
+import { db } from '@db/client'
+import { memoryEntries } from '@db/schema'
 import { embedWithOllama } from '@lib/ai-sdk/embedWithOllama'
-import { MemoryEntry } from '@prisma/client'
 import { recallMemorySchema } from '@schemas/recallMemory.schema'
+import { and, cosineDistance, desc, eq, gt, sql } from 'drizzle-orm'
 
 const recallMemory: RequestHandler = async (request, response) => {
     try {
-        // Validate request
         const recallData = await recallMemorySchema.safeParse(request.body)
 
         if (!recallData.success) {
@@ -23,22 +23,22 @@ const recallMemory: RequestHandler = async (request, response) => {
 
         const { query, userId, topK = 5 } = recallData.data
 
-        // Get embedding for query
         const [queryEmbedding] = await embedWithOllama([query])
 
-        // Perform semantic search using pgvector <=> operator (cosine distance)
-        const memories = await prisma.$queryRawUnsafe<MemoryEntry[]>(
-            `
-            SELECT id, content, embedding::text, "createdAt", "userId"
-            FROM "MemoryEntry"
-            WHERE "userId" = $2
-            ORDER BY embedding <=> $1::vector
-            LIMIT $3
-        `,
-            queryEmbedding,
-            userId,
-            topK,
-        )
+        const similarity = sql<number>`1 - (${cosineDistance(memoryEntries.embedding, queryEmbedding)})`
+
+        const memories = await db
+            .select({
+                id: memoryEntries.id,
+                content: memoryEntries.content,
+                createdAt: memoryEntries.createdAt,
+                userId: memoryEntries.userId,
+                similarity,
+            })
+            .from(memoryEntries)
+            .where(and(eq(memoryEntries.userId, userId), gt(similarity, 0.5)))
+            .orderBy(desc(similarity))
+            .limit(topK)
 
         response.status(200).json({
             success: true,
