@@ -2,6 +2,7 @@ import { Router } from 'express'
 import authRoutes from './auth.routes'
 import type { RouteGroup } from '@models/routes'
 import memoryEntryRoutes from './memoryEntry.routes'
+import ragRoutes from './rag.routes'
 
 const registerRouteGroups = (router: Router, groups: RouteGroup[]) => {
     groups.forEach((group) => {
@@ -13,7 +14,7 @@ const registerRouteGroups = (router: Router, groups: RouteGroup[]) => {
 }
 
 const configureRoutes = (router: Router) => {
-    const routeGroups = [authRoutes, memoryEntryRoutes]
+    const routeGroups = [authRoutes, memoryEntryRoutes, ragRoutes]
     registerRouteGroups(router, routeGroups)
 }
 
