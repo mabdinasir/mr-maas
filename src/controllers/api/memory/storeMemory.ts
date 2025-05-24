@@ -20,7 +20,7 @@ const storeMemory: RequestHandler = async (request, response) => {
             return
         }
 
-        const { content, userId } = memoryData.data
+        const { content, userId, type, metadata } = memoryData.data
 
         // ✅ 2: Generate 768-dim embedding
         const [embedding] = await embedWithOllama([content])
@@ -29,13 +29,18 @@ const storeMemory: RequestHandler = async (request, response) => {
         }
 
         // ✅ 3: Insert into DB using Drizzle
-        const [memory] = await db.insert(memoryEntries).values({ userId, content, embedding }).returning({
-            id: memoryEntries.id,
-            userId: memoryEntries.userId,
-            content: memoryEntries.content,
-            embedding: memoryEntries.embedding,
-            createdAt: memoryEntries.createdAt,
-        })
+        const [memory] = await db
+            .insert(memoryEntries)
+            .values({ userId, content, embedding, type, metadata })
+            .returning({
+                id: memoryEntries.id,
+                userId: memoryEntries.userId,
+                content: memoryEntries.content,
+                embedding: memoryEntries.embedding,
+                type: memoryEntries.type,
+                metadata: memoryEntries.metadata,
+                createdAt: memoryEntries.createdAt,
+            })
 
         // ✅ 4: Respond with success
         response.status(200).json({

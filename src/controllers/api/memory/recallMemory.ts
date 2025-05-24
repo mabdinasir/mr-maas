@@ -7,13 +7,13 @@ import { and, cosineDistance, desc, eq, gt, sql } from 'drizzle-orm'
 
 const recallMemory: RequestHandler = async (request, response) => {
     try {
-        const recallData = await recallMemorySchema.safeParse(request.body)
+        const parsed = recallMemorySchema.safeParse(request.body)
 
-        if (!recallData.success) {
+        if (!parsed.success) {
             response.status(400).json({
                 success: false,
                 message: 'Validation failed',
-                errors: recallData.error.errors.map((err) => ({
+                errors: parsed.error.errors.map((err) => ({
                     field: err.path.join('.'),
                     message: err.message,
                 })),
@@ -21,11 +21,25 @@ const recallMemory: RequestHandler = async (request, response) => {
             return
         }
 
-        const { query, userId, topK = 5 } = recallData.data
+        const { query, userId, topK = 5, type, metadata } = parsed.data
 
         const [queryEmbedding] = await embedWithOllama([query])
-
         const similarity = sql<number>`1 - (${cosineDistance(memoryEntries.embedding, queryEmbedding)})`
+
+        // Build dynamic filters
+        const conditions = [eq(memoryEntries.userId, userId), gt(similarity, 0.5)]
+
+        if (type) {
+            conditions.push(eq(memoryEntries.type, type))
+        }
+
+        if (metadata) {
+            for (const [key, value] of Object.entries(metadata)) {
+                const isArray = Array.isArray(value)
+                const valJson = isArray ? JSON.stringify(value) : JSON.stringify([value])
+                conditions.push(sql`metadata->${key} @> ${valJson}::jsonb`)
+            }
+        }
 
         const memories = await db
             .select({
@@ -33,10 +47,12 @@ const recallMemory: RequestHandler = async (request, response) => {
                 content: memoryEntries.content,
                 createdAt: memoryEntries.createdAt,
                 userId: memoryEntries.userId,
+                type: memoryEntries.type,
+                metadata: memoryEntries.metadata,
                 similarity,
             })
             .from(memoryEntries)
-            .where(and(eq(memoryEntries.userId, userId), gt(similarity, 0.5)))
+            .where(and(...conditions))
             .orderBy(desc(similarity))
             .limit(topK)
 
@@ -45,7 +61,6 @@ const recallMemory: RequestHandler = async (request, response) => {
                 success: false,
                 message: 'No relevant memories found.',
             })
-            return
         }
 
         response.status(200).json({

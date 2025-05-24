@@ -1,7 +1,7 @@
-import { pgTable, uuid, text, timestamp, boolean, pgEnum, vector } from 'drizzle-orm/pg-core'
+import { pgTable, uuid, text, timestamp, boolean, pgEnum, vector, jsonb } from 'drizzle-orm/pg-core'
 
-// Enum for user roles
 export const roleEnum = pgEnum('Role', ['USER', 'ADMIN'])
+export const memoryTypeEnum = pgEnum('MemoryType', ['text', 'image', 'audio', 'video'])
 
 export const users = pgTable('User', {
     id: uuid('id').defaultRandom().primaryKey(),
@@ -28,6 +28,8 @@ export const memoryEntries = pgTable('MemoryEntry', {
     userId: uuid('userId')
         .notNull()
         .references(() => users.id),
+    type: memoryTypeEnum('type').default('text'),
+    metadata: jsonb('metadata'),
 })
 
 export const tokenBlacklist = pgTable('TokenBlacklist', {

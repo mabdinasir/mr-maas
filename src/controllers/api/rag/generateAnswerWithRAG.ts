@@ -12,7 +12,7 @@ const model = ollama('qwen3')
 
 const generateAnswerWithRAG: RequestHandler = async (req, res) => {
     try {
-        const ragData = await generateAnswerWithRAGSchema.safeParse(req.body)
+        const ragData = generateAnswerWithRAGSchema.safeParse(req.body)
 
         if (!ragData.success) {
             res.status(400).json({
@@ -26,15 +26,25 @@ const generateAnswerWithRAG: RequestHandler = async (req, res) => {
             return
         }
 
-        const { query, userId } = ragData.data
+        const { query, userId, type, metadata } = ragData.data
 
         // Step 1: Embed the query
         const [queryEmbedding] = await embedWithOllama([query])
-
-        // Step 2: Calculate similarity SQL expression
         const similarity = sql<number>`1 - (${cosineDistance(memoryEntries.embedding, queryEmbedding)})`
 
-        // Step 3: Retrieve top 5 most relevant memory entries
+        const conditions = [eq(memoryEntries.userId, userId), gt(similarity, 0.5)]
+
+        if (type) {
+            conditions.push(eq(memoryEntries.type, type))
+        }
+
+        if (metadata) {
+            for (const [key, value] of Object.entries(metadata)) {
+                const valJson = Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value])
+                conditions.push(sql`metadata->${key} @> ${valJson}::jsonb`)
+            }
+        }
+
         const memories = await db
             .select({
                 id: memoryEntries.id,
@@ -42,13 +52,12 @@ const generateAnswerWithRAG: RequestHandler = async (req, res) => {
                 similarity,
             })
             .from(memoryEntries)
-            .where(and(eq(memoryEntries.userId, userId), gt(similarity, 0.5)))
+            .where(and(...conditions))
             .orderBy(desc(similarity))
             .limit(5)
 
         const context = memories.map((memory) => memory.content).join('\n')
 
-        // Step 4: Generate answer using context
         const result = await generateText({
             model,
             messages: [
