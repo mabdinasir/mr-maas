@@ -1,29 +1,43 @@
 import type { RequestHandler } from 'express'
+import { eq } from 'drizzle-orm'
 import { hashPassword } from '@lib/utils/security/hashPassword'
-import { prisma } from '@lib/prismaClient'
+import { users } from '@db/schema'
 import { z } from 'zod'
 import { signUpSchema } from '@schemas/index'
 import { omitPassword } from '@lib/utils/security/omitPassword'
+import { db } from '@db/client'
 
 const signUp: RequestHandler = async (request, response) => {
     try {
-        // Validate request body against schema
+        // 1. Validate request body
         const userData = await signUpSchema.parseAsync(request.body)
 
-        // Check for existing user
-        const existingUser = await prisma.user.findUnique({ where: { email: userData.email } })
-        if (existingUser) {
-            response.status(409).json({ success: false, message: 'User already exists!' })
+        // 2. Check if user already exists
+        const existingUser = await db.select().from(users).where(eq(users.email, userData.email))
+        if (existingUser.length > 0) {
+            response.status(409).json({
+                success: false,
+                message: 'User already exists!',
+            })
             return
         }
-        // Hash password and create user
-        const hashedPassword = await hashPassword(userData.password)
-        const createdUser = await prisma.user.create({
-            data: { ...userData, password: hashedPassword },
-        })
 
-        // Remove password from response
-        const userWithoutPassword = omitPassword(createdUser)
+        // 3. Hash password
+        const hashedPassword = await hashPassword(userData.password)
+
+        // 4. Insert new user
+        const [newUser] = await db
+            .insert(users)
+            .values({
+                ...userData,
+                password: hashedPassword,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            })
+            .returning()
+
+        // 5. Return user without password
+        const userWithoutPassword = omitPassword(newUser)
 
         response.status(201).json({
             success: true,

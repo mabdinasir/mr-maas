@@ -1,18 +1,19 @@
 import type { RequestHandler } from 'express'
 import { embedWithOllama } from '@lib/ai-sdk/embedWithOllama'
-import { prisma } from '@lib/prismaClient'
+import { db } from '@db/client'
+import { memoryEntries } from '@db/schema'
 import { generateAnswerWithRAGSchema } from '@schemas/generateAnswerWithRAG.schema'
-import { MemoryEntry } from '@prisma/client'
 import { createOllama } from 'ollama-ai-provider'
 import { generateText } from 'ai'
+import { and, cosineDistance, desc, eq, gt, sql } from 'drizzle-orm'
 
 const ollama = createOllama()
 const model = ollama('qwen3')
 
 const generateAnswerWithRAG: RequestHandler = async (req, res) => {
     try {
-        // Validate request
-        const ragData = await generateAnswerWithRAGSchema.safeParse(req.body)
+        const ragData = generateAnswerWithRAGSchema.safeParse(req.body)
+
         if (!ragData.success) {
             res.status(400).json({
                 success: false,
@@ -25,27 +26,38 @@ const generateAnswerWithRAG: RequestHandler = async (req, res) => {
             return
         }
 
-        const { query, userId } = ragData.data
+        const { query, userId, type, metadata } = ragData.data
 
         // Step 1: Embed the query
         const [queryEmbedding] = await embedWithOllama([query])
+        const similarity = sql<number>`1 - (${cosineDistance(memoryEntries.embedding, queryEmbedding)})`
 
-        // Step 2: Retrieve relevant memory entries
-        const memories = await prisma.$queryRawUnsafe<MemoryEntry[]>(
-            `
-                SELECT id, content
-                FROM "MemoryEntry"
-                WHERE "userId" = $1
-                ORDER BY embedding <-> $2::vector
-                LIMIT 5
-            `,
-            userId,
-            queryEmbedding,
-        )
+        const conditions = [eq(memoryEntries.userId, userId), gt(similarity, 0.5)]
+
+        if (type) {
+            conditions.push(eq(memoryEntries.type, type))
+        }
+
+        if (metadata) {
+            for (const [key, value] of Object.entries(metadata)) {
+                const valJson = Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value])
+                conditions.push(sql`metadata->${key} @> ${valJson}::jsonb`)
+            }
+        }
+
+        const memories = await db
+            .select({
+                id: memoryEntries.id,
+                content: memoryEntries.content,
+                similarity,
+            })
+            .from(memoryEntries)
+            .where(and(...conditions))
+            .orderBy(desc(similarity))
+            .limit(5)
 
         const context = memories.map((memory) => memory.content).join('\n')
 
-        // Step 3: Use `generateText` with the custom model
         const result = await generateText({
             model,
             messages: [

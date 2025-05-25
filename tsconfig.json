@@ -24,11 +24,10 @@
             "@models/*": ["models/*"],
             "@lib/*": ["lib/*"],
             "@utils/*": ["lib/utils/*"],
-            "@prisma/*": ["../prisma/*"],
             "@middleware/*": ["middleware/*"],
             "@schemas/*": ["schemas/*"],
             "@config/*": ["lib/config/*"],
-            "@generated/*": ["generated/*"]
+            "@db/*": ["db/*"]
         }
     },
     "exclude": ["node_modules", "dist", "eslint.config.js"]

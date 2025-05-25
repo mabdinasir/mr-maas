@@ -1,19 +1,19 @@
 import type { RequestHandler } from 'express'
-import { prisma } from '@lib/prismaClient'
+import { db } from '@db/client'
+import { memoryEntries } from '@db/schema'
 import { embedWithOllama } from '@lib/ai-sdk/embedWithOllama'
-import { MemoryEntry } from '@prisma/client'
 import { recallMemorySchema } from '@schemas/recallMemory.schema'
+import { and, cosineDistance, desc, eq, gt, sql } from 'drizzle-orm'
 
 const recallMemory: RequestHandler = async (request, response) => {
     try {
-        // Validate request
-        const recallData = await recallMemorySchema.safeParse(request.body)
+        const parsed = recallMemorySchema.safeParse(request.body)
 
-        if (!recallData.success) {
+        if (!parsed.success) {
             response.status(400).json({
                 success: false,
                 message: 'Validation failed',
-                errors: recallData.error.errors.map((err) => ({
+                errors: parsed.error.errors.map((err) => ({
                     field: err.path.join('.'),
                     message: err.message,
                 })),
@@ -21,24 +21,47 @@ const recallMemory: RequestHandler = async (request, response) => {
             return
         }
 
-        const { query, userId, topK = 5 } = recallData.data
+        const { query, userId, topK = 5, type, metadata } = parsed.data
 
-        // Get embedding for query
         const [queryEmbedding] = await embedWithOllama([query])
+        const similarity = sql<number>`1 - (${cosineDistance(memoryEntries.embedding, queryEmbedding)})`
 
-        // Perform semantic search using pgvector <=> operator (cosine distance)
-        const memories = await prisma.$queryRawUnsafe<MemoryEntry[]>(
-            `
-            SELECT id, content, embedding::text, "createdAt", "userId"
-            FROM "MemoryEntry"
-            WHERE "userId" = $2
-            ORDER BY embedding <=> $1::vector
-            LIMIT $3
-        `,
-            queryEmbedding,
-            userId,
-            topK,
-        )
+        // Build dynamic filters
+        const conditions = [eq(memoryEntries.userId, userId), gt(similarity, 0.5)]
+
+        if (type) {
+            conditions.push(eq(memoryEntries.type, type))
+        }
+
+        if (metadata) {
+            for (const [key, value] of Object.entries(metadata)) {
+                const isArray = Array.isArray(value)
+                const valJson = isArray ? JSON.stringify(value) : JSON.stringify([value])
+                conditions.push(sql`metadata->${key} @> ${valJson}::jsonb`)
+            }
+        }
+
+        const memories = await db
+            .select({
+                id: memoryEntries.id,
+                content: memoryEntries.content,
+                createdAt: memoryEntries.createdAt,
+                userId: memoryEntries.userId,
+                type: memoryEntries.type,
+                metadata: memoryEntries.metadata,
+                similarity,
+            })
+            .from(memoryEntries)
+            .where(and(...conditions))
+            .orderBy(desc(similarity))
+            .limit(topK)
+
+        if (memories.length === 0) {
+            response.status(404).json({
+                success: false,
+                message: 'No relevant memories found.',
+            })
+        }
 
         response.status(200).json({
             success: true,
