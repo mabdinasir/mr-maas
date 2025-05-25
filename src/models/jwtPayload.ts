@@ -1,4 +1,4 @@
-import { User } from "./user"
+import { User } from './user'
 
 export interface JwtPayload extends Omit<User, 'password'> {
     iat?: number
