@@ -16,7 +16,6 @@
 - [Database Schema](#database-schema)
 - [Linting & Formatting](#linting--formatting)
 - [License](#license)
-- [Contact](#contact)
 
 ---
 
@@ -223,12 +222,6 @@ bun run fmt
 ## License
 
 This project is **proprietary** and all rights are reserved by the company. Unauthorized use, copying, or distribution is strictly prohibited.
-
----
-
-## Contact
-
-For internal support or questions, contact the backend engineering team.
 
 ---
 
