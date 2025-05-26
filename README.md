@@ -221,7 +221,7 @@ bun run fmt
 
 ## License
 
-This project is **proprietary** and all rights are reserved by the company. Unauthorized use, copying, or distribution is strictly prohibited.
+This project is licensed under the MIT License — free for personal and commercial use with no attribution expected.
 
 ---
 
